@@ -1,0 +1,7 @@
+﻿variable,description,type
+country,name of countries in the analysis,character
+confirmed,number of confirmed covid-19 cases by 17.10.2020,numeric
+death,number of death due to covid-19 by 17.10.2020,numeric
+recovered,number of recoveries from covid-19 by 17.10.2020,numeric
+active,number of active covid-19 cases by 17.10.2020,numeric
+population,population of countries in 2019,numeric
