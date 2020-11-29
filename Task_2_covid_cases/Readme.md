@@ -6,3 +6,4 @@ In the folder there are 4 subfolders.
 - In the docs folder the reports are located in html and pdf format.
 - In the out folder the outputs of the models are located like the model comparison table of the analysis.
 
+The projects github repo link: https://github.com/ASerfozo/Coding_in_R/tree/main/Task_2_covid_cases
