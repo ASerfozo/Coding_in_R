@@ -1,4 +1,4 @@
-This folder contains the coding 1 covid assignment of Attila Serfozo for CEU Business Analytics Data Analysis and Coding in R classes.
+# This folder contains the coding 1 covid assignment of Attila Serfozo for CEU Business Analytics Data Analysis and Coding in R classes.
 
 In the folder there are 4 subfolders. 
 - In the codes folder there are the R files for data download, data cleaning and analysis and reporting.
