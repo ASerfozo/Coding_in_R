@@ -13,7 +13,7 @@ rm(list=ls())
 library(tidyverse)
 
 # Read the raw files
-my_path <- "C:/Users/Attila/Documents/CEU/Coding_in_R/Task_2_covid_cases/data/"
+my_path <- "https://raw.githubusercontent.com/ASerfozo/Coding_in_R/main/Task_2_covid_cases/data/"
 # covid data
 cv <- read_csv(paste0(my_path,'raw/covid_10_17_2020_raw.csv'))
 # population data
@@ -132,6 +132,20 @@ View( df %>% filter( !complete.cases(df) ) )
 # Drop if population, confirmed cases or death is missing
 df <- df %>% filter( !( is.na( population ) | is.na( confirmed ) | is.na( death ) ))
 
+# All covid variables are scaled by thousands and population is scaled by millions
+df <- df %>% transmute(country = country,
+                       active=active/1000,
+                       confirmed=confirmed/1000,
+                       death=death/1000,
+                       recovered=recovered/1000,
+                       population=population/1000000)
+
+# To be able to create log transformations on number of deaths I narrow the scope to
+# countries with non-zero number of covid death cases. As a result I excluded 12 observations.
+# Checking countries, where there were no records of death
+filter(df, death==0)
+# Filtering out countries with 0 death
+df <- df %>%filter(death!=0)
 
 #####
 # Save clean data

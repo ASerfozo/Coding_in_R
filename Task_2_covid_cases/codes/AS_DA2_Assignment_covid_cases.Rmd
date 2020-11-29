@@ -1,0 +1,231 @@
+---
+title: "DA2 Assigment on covid-19 cases"
+author: "AttilaSerfozo"
+date: '2020-11-29 '
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+# Packages
+rm(list=ls())
+library(WDI)
+library(tidyverse)
+require(scales)
+library(lspline)
+library(estimatr)
+library(texreg)
+library(ggthemes)
+library(magrittr)
+library(moments)
+
+my_path <- "https://raw.githubusercontent.com/ASerfozo/Coding_in_R/main/Task_2_covid_cases/data/"
+df <- read_csv(paste0(my_path,'clean/covid_pop_10_17_2020_clean.csv'))
+```
+
+## 1. Executive Summary 
+In this project I have analyzed the association between confirmed covid-19 cases and number of deaths by covid-19. After checking the possible transformations I decided to go with a log-log transformation as we can have the best fit regression with this transformation. From the analyzed models I have selected the weighted linear regression using population weights as the best model, because it shows perfectly the correlation between confirmed cases and death. The results of the model showed that there is a strong connection between the two variables, it tells us that countries with 10% more confirmed covid cases can have on average 9.5% more deaths from covid-19. 
+I think I could even strengthen further the results of my model by adding the number of chronicle diseases per country or proportion of elderly people as new variables and create a multiple regression model from it. On the other hand, I think that the accuracy of the model is hurt by the fact that the number of covid-19 deaths are measured variously across countries.
+
+## 2. Introduction
+The main goal of the analysis is to investigate the pattern of confirmed covid-19 cases and covid-19 death figures. The main question of the analysis is whether we can predict how many deaths can be expected, if we know the number of confirmed cases in a country. The population of the analysis is the number of people infected with covid-19 disease worldwide. The sample I am working with in this task is a proportion of that population. It includes only the confirmed covid-19 cases until 17.10.2020.  
+
+A potential quality issue with the data is about reliability, because the measurement of covid death figures is not unified across different countries. In some countries if someone had a chronicle disease and died due to covid-19, the reason of death counts toward death by chronicle disease. On the other hand, in other countries they count these as covid deaths, what's more if someone died due to a chronicle disease and later the virus is shown in the body it counts as covid-19 death case.
+
+## 3. Selection and scaling of observations
+The main variables of the dataset to be analyzed are the countries, their population in millions (downloaded from WDI), the number of confirmed and active covid cases in thousands and number of recoveries and deaths in thousands (collected by Center for Systems Science and Engineering (CSSE) at Johns Hopkins University).
+
+During the cleaning process I excluded all the grouping observations like EU, OECD and others. In addition all the countries missing population, confirmed cases or death (all together 39) are excluded. Furthermore I decided to narrow the scope to countries with non-zero death figures to make the logarithmic transformations interpretable. Thus I excluded 12 countries with zero registered death cases and ended up with 170 observations. The excluded 12 countries represented an insignificant ratio with only 4% from the population of the full sample and 0.003% of all confirmed cases.
+
+## 4. Histograms and summary statistics of the X and Y variables
+According to the histograms, both the number of deaths and confirmed cases are following an exponential distribution with most countries represented in the first bin. Both confirmed and death variables are right skewed with some extreme large values. These extreme values are not errors, the reason behind is the different handling of the pandemic by countries.
+
+```{r, echo=FALSE, out.width = '50%', fig.height=4}
+
+df %>% ggplot() +
+  geom_histogram(aes(x = death), bins = 50, fill = "blue", col="black", alpha=0.7) +
+  labs(title="Distribution of number of death", x = "Number of deaths in thousands") +
+  theme_bw()
+  
+df %>% ggplot() +  
+  geom_histogram(aes(x = confirmed), bins = 50, fill = "blue", col="black", alpha=0.7) +
+  labs(title="Distribution of number of confirmed cases",x = "Number of confirmed cases in thousands") +
+  theme_bw()
+
+#Create statistics
+death_sum_stat <- df %>% 
+  summarise(
+    mean     = round(mean(death), 2),
+    median   = round(median(death),2),
+    std      = round(sd(death), 2),
+    iq_range = round(IQR(death),2),
+    min      = round(min(death),2),
+    max      = round(max(death),2),
+    skew     = round(moments::skewness(death), 2),
+    numObs   = sum( !is.na( death ) ) )
+
+confirmed_sum_stat <- df %>% 
+  summarise(
+    mean     = round(mean(confirmed), 2),
+    median   = round(median(confirmed), 2),
+    std      = round(sd(confirmed), 2),
+    iq_range = round(IQR(confirmed),2),
+    min      = round(min(confirmed), 2),
+    max      = round(max(confirmed), 2),
+    skew     = round(moments::skewness(confirmed), 2),
+    numObs   = sum( !is.na( confirmed ) ) )
+
+variables_summary <- death_sum_stat %>% add_row( confirmed_sum_stat )
+variables_summary <- mutate (variables_summary, variable = c("Death" , "Confirmed"))
+variables_summary <- variables_summary [, c(9,1:8)]
+
+knitr::kable(variables_summary,caption="Summary stat of death and confirmed cases (in thousands)")
+
+
+```
+
+## 5. Transformation of variables and comparison
+By checking the possible logarithmic transformations of confirmed and death variables, it seems that if we turn only one variable to logarithm and the other we keep level, the fit of the linear regression will be poor with an R-squared around 0.2. By transforming the variables to logarithm they take a normal distribution which is easier to interpret and analyze. The log-log transformed variables seem to have the best fit with a 0.886 R-squared. Taking the log-log transformation means that I will associate the percentage change of confirmed cases with the percentage change of death figures. The graphs of the transformed variables can be found in Appendix 1.
+
+## 6. Choosen model
+I selected the log-log linear regression model, weighted with population, as the best-fit regression. The model has the highest R-squared with 0.9283 and the magnitude of the coefficients are meaningful.
+The formula of the model is ln_death = -3.388 + 0.952 * ln_confirmed.
+Looking at the model, the alpha parameter can not be interpreted meaningfully, because in case of log the intercept is not useful. The beta parameter is more important, it tells us that countries with 10% more confirmed covid cases can see on average 9.5% more deaths from covid-19. Or in other words a 10% increase in confirmed covid cases can result on average 9.5% more deaths from covid-19 in the country. The graphs and comparison of the various models can be found in Appendix 2.
+
+```{r, echo=FALSE, message=FALSE, fig.height=3}
+df <- df %>% mutate(ln_death = log(death))
+df <- df %>% mutate(ln_confirmed = log(confirmed))
+reg4 <- lm_robust(ln_death ~ ln_confirmed, data = df , weights = population)
+
+ggplot(data = df, aes(x = ln_confirmed, y = ln_death)) +
+  geom_point(data = df, aes(size=population),  color = 'blue', shape = 16, alpha = 0.6,  show.legend=F) +
+  geom_smooth(aes(weight = population), method = "lm", color='red')+
+  scale_size(range = c(1, 10))+
+  labs(title="Weighted linear regression, using population weights", x = "ln(confirmed cases in thousands)",y = "ln(death cases in thousands)")+
+  annotate("text", x = 8.8, y = 4, label = "USA", size=5)+
+  annotate("text", x = 3.5, y = 2.5, label = "China", size=5)
+```
+
+## Hypothesis testing on the beta parameter
+In the following I would like to the test the association between confirmed cases and number of deaths in a hypothesis. My null hypothesis is that beta equals to zero and the alternative hypothesis is that it is not equal to zero. I selected a 99% confidence interval for the test, which means we accept only 1% false positive. According to the results of the hypothesis testing, the t-value is 15.12 which is far away from 2.6 (99% CI), in addition the p-value is almost zero, which tells us, that the possibility of giving a false positive is almost 0%. As a result we can reject the H0 hypothesis that the beta coefficient on log confirmed cases is equal to zero. The correlation between the two variables seems to significant. 
+
+## Analysis of the residuals
+The table below contains the best 5 and worst 5 countries regarding actual log number of deaths versus the predicted numbers by the model. In the best 5 countries we can see the countries like Singapore, where the number of deaths are far better than the predicted number, probably because the country has one of the highest quality healthcare system around the world. I means that it is the best place to be in these troubling times. On the other hand we can find countries like Italy, Mexico or the United Kingdom between the worst performers, where the number of death is well above the model predictions. These bad results can be outcome of the bad society habits about social distancing or because of the underestimatement of the power of covid-19.
+
+```{r, echo=FALSE, out.width = '50%'}
+# Get the predicted y values from the model
+df$reg4_y_pred <- reg4$fitted.values
+# Calculate the errors of the model
+df$reg4_res <- df$ln_death - df$reg4_y_pred 
+
+# Find countries with largest negative errors
+top_negative_5 <- df %>% top_n( -5 , reg4_res ) %>% 
+  select( country , ln_death , reg4_y_pred , reg4_res ) %>% 
+  transmute( Best_country=country,
+          Ln_death=round(ln_death,2),
+          Prediction=round(reg4_y_pred,2),
+          Residual=round(reg4_res,2))
+
+# Find countries with largest positive errors
+top_5 <- df %>% top_n( 5 , reg4_res ) %>% 
+  select( country , ln_death , reg4_y_pred , reg4_res ) %>% 
+  transmute( Worst_country=country,
+          Ln_death=round(ln_death,2),
+          Prediction=round(reg4_y_pred,2),
+          Residual=round(reg4_res,2))
+
+knitr::kable(cbind(top_negative_5,top_5) ,caption="Countries with largest negative and positive errors")
+
+
+```
+
+```{r}
+
+```
+
+# Appendix 1 - Logarithmic transformations
+```{r, echo=FALSE, message=FALSE, out.width = '50%', fig.height=4}
+# Appendix 1 - transformation of variables
+
+# 1. level-level: death - confirmed
+ggplot( df , aes(x = confirmed, y = death)) +
+  geom_point() +
+  geom_smooth(method="loess")+
+  labs(title="Level-level: death - confirmed", x = "Number of confirmed cases in thousands",y = "Number of death in thousands") 
+
+# 2. level-log: death - ln confirmed
+ggplot( df , aes(x = confirmed, y = death)) +
+  geom_point() +
+  geom_smooth(method="loess")+
+  labs(title="Level-log: death - ln confirmed", x = "Number of confirmed cases in thousands",y = "Number of death in thousands (ln scale)") +
+  scale_x_continuous( trans = log_trans(),  breaks = c(1,2,5,10,20,50,100,200,500,1000,10000) )
+
+# 3. log-level: ln death - confirmed
+ggplot( df , aes(x = confirmed, y = death)) +
+  geom_point() +
+  geom_smooth(method="loess")+
+  labs(title="Log-level: ln death - confirmed", x = "Number of confirmed cases in thousands (ln scale)",y = "Number of death in thousands") +
+  scale_y_continuous( trans = log_trans(),  breaks = c(1,2,5,10,20,50,100,200,500,1000,10000) )
+
+# 4. log-log: ln death - ln confirmed
+ggplot( df , aes(x = confirmed, y = death ))  +
+  geom_point() +
+  geom_smooth(method="loess")+
+  labs(title="Log-log: ln death - ln confirmed", x = "Number of confirmed cases in thousands (ln scale)",y = "Number of death in thousands (ln scale)") +
+  scale_x_continuous( trans = log_trans(),  breaks = c(1,2,5,10,20,50,100,200,500,1000,10000) )+
+  scale_y_continuous( trans = log_trans(),  breaks = c(1,2,5,10,20,50,100,200,500,1000,10000) )
+
+```
+
+# Appendix 2 - Regression models
+
+```{r, echo=FALSE, message=FALSE, out.width = '50%', fig.height=3}
+#### 1. Simple linear regression
+reg1 <- lm_robust( ln_death ~ ln_confirmed , data = df , se_type = "HC2" )
+
+ggplot( data = df, aes( x = ln_confirmed, y = ln_death ) ) + 
+  geom_point( color='blue') +
+  geom_smooth( method = lm , color = 'red' )+
+  labs(title="Simple linear regression", x = "ln(confirmed cases in thousands)",y = "ln(death cases in thousands)")
+summary(reg1)
+
+#### 2. Quadratic regression
+df <- df %>% mutate( ln_confirmed_sq = ln_confirmed^2)
+reg2 <- lm_robust( ln_death ~ ln_confirmed + ln_confirmed_sq , data = df )
+
+ggplot( data = df, aes( x = ln_confirmed, y = ln_death ) ) + 
+  geom_point( color='blue') +
+  geom_smooth( formula = y ~ poly(x,2) , method = lm , color = 'red' )+
+  labs(title="Quadratic regression", x = "ln(confirmed cases in thousands)",y = "ln(death cases in thousands)")
+summary(reg2)
+
+#### 3. Piecewise linear spline
+# define the cutoff
+cutoff <- 30
+cutoff_ln <- log(cutoff)
+
+reg3 <- lm_robust(ln_death ~ lspline( ln_confirmed , cutoff_ln ), data = df )
+
+ggplot( data = df, aes( x = ln_confirmed, y = ln_death ) ) + 
+  geom_point( color='blue') +
+  geom_smooth( formula = y ~ lspline(x,cutoff_ln) , method = lm , color = 'red' )+
+  labs(title="Piecewise linear spline", x = "ln(confirmed cases in thousands)",y = "ln(death cases in thousands)")
+summary(reg3)
+
+#### 4.Weighted linear regression, using population weights
+reg4 <- lm_robust(ln_death ~ ln_confirmed, data = df , weights = population)
+
+ggplot(data = df, aes(x = ln_confirmed, y = ln_death)) +
+  geom_point(data = df, aes(size=population),  color = 'blue', shape = 16, alpha = 0.6,  show.legend=F) +
+  geom_smooth(aes(weight = population), method = "lm", color='red')+
+  scale_size(range = c(1, 10))+
+  labs(title="Weighted linear using population weights", x = "ln(confirmed cases in thousands)",y = "ln(death cases in thousands)")+
+  annotate("text", x = 8.8, y = 4, label = "USA", size=5)+
+  annotate("text", x = 3.5, y = 2.5, label = "China", size=5)
+summary(reg4)
+```
+
+# Model comparison
+As we can see from the results all four models are providing a good fit with an R-squared above 0.886. All of the models have a very small p-value and large t-values. On the graphs it is easy to see that the lines barely changes. But the reason behind choosing the weighted linear regression was it's highest R-squared value of 0.9283 and had one of the smallest p-values. In addition the weighted model works well with the population weights considering larger countries as more important and smaller countries with less priority. I think it is a usable method as smaller countries can treat the pandemic better and can focuse easier on stopping th virus than larger countries where it needs more resources and effort.
