@@ -3,8 +3,8 @@ title: "DA2 Assigment on covid-19 cases"
 author: "AttilaSerfozo"
 date: '2020-11-29 '
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -105,7 +105,8 @@ ggplot(data = df, aes(x = ln_confirmed, y = ln_death)) +
   scale_size(range = c(1, 10))+
   labs(title="Weighted linear regression, using population weights", x = "ln(confirmed cases in thousands)",y = "ln(death cases in thousands)")+
   annotate("text", x = 8.8, y = 4, label = "USA", size=5)+
-  annotate("text", x = 3.5, y = 2.5, label = "China", size=5)
+  annotate("text", x = 3.5, y = 2.5, label = "China", size=5) +
+  theme_bw()
 ```
 
 ## Hypothesis testing on the beta parameter
@@ -153,21 +154,24 @@ knitr::kable(cbind(top_negative_5,top_5) ,caption="Countries with largest negati
 ggplot( df , aes(x = confirmed, y = death)) +
   geom_point() +
   geom_smooth(method="loess")+
-  labs(title="Level-level: death - confirmed", x = "Number of confirmed cases in thousands",y = "Number of death in thousands") 
+  labs(title="Level-level: death - confirmed", x = "Number of confirmed cases in thousands",y = "Number of death in thousands") +
+  theme_bw() 
 
 # 2. level-log: death - ln confirmed
 ggplot( df , aes(x = confirmed, y = death)) +
   geom_point() +
   geom_smooth(method="loess")+
   labs(title="Level-log: death - ln confirmed", x = "Number of confirmed cases in thousands",y = "Number of death in thousands (ln scale)") +
-  scale_x_continuous( trans = log_trans(),  breaks = c(1,2,5,10,20,50,100,200,500,1000,10000) )
+  scale_x_continuous( trans = log_trans(),  breaks = c(1,2,5,10,20,50,100,200,500,1000,10000) ) +
+  theme_bw()
 
 # 3. log-level: ln death - confirmed
 ggplot( df , aes(x = confirmed, y = death)) +
   geom_point() +
   geom_smooth(method="loess")+
   labs(title="Log-level: ln death - confirmed", x = "Number of confirmed cases in thousands (ln scale)",y = "Number of death in thousands") +
-  scale_y_continuous( trans = log_trans(),  breaks = c(1,2,5,10,20,50,100,200,500,1000,10000) )
+  scale_y_continuous( trans = log_trans(),  breaks = c(1,2,5,10,20,50,100,200,500,1000,10000) ) +
+  theme_bw()
 
 # 4. log-log: ln death - ln confirmed
 ggplot( df , aes(x = confirmed, y = death ))  +
@@ -175,7 +179,8 @@ ggplot( df , aes(x = confirmed, y = death ))  +
   geom_smooth(method="loess")+
   labs(title="Log-log: ln death - ln confirmed", x = "Number of confirmed cases in thousands (ln scale)",y = "Number of death in thousands (ln scale)") +
   scale_x_continuous( trans = log_trans(),  breaks = c(1,2,5,10,20,50,100,200,500,1000,10000) )+
-  scale_y_continuous( trans = log_trans(),  breaks = c(1,2,5,10,20,50,100,200,500,1000,10000) )
+  scale_y_continuous( trans = log_trans(),  breaks = c(1,2,5,10,20,50,100,200,500,1000,10000) ) +
+  theme_bw()
 
 ```
 
@@ -188,7 +193,8 @@ reg1 <- lm_robust( ln_death ~ ln_confirmed , data = df , se_type = "HC2" )
 ggplot( data = df, aes( x = ln_confirmed, y = ln_death ) ) + 
   geom_point( color='blue') +
   geom_smooth( method = lm , color = 'red' )+
-  labs(title="Simple linear regression", x = "ln(confirmed cases in thousands)",y = "ln(death cases in thousands)")
+  labs(title="Simple linear regression", x = "ln(confirmed cases in thousands)",y = "ln(death cases in thousands)") +
+  theme_bw()
 summary(reg1)
 
 #### 2. Quadratic regression
@@ -198,7 +204,8 @@ reg2 <- lm_robust( ln_death ~ ln_confirmed + ln_confirmed_sq , data = df )
 ggplot( data = df, aes( x = ln_confirmed, y = ln_death ) ) + 
   geom_point( color='blue') +
   geom_smooth( formula = y ~ poly(x,2) , method = lm , color = 'red' )+
-  labs(title="Quadratic regression", x = "ln(confirmed cases in thousands)",y = "ln(death cases in thousands)")
+  labs(title="Quadratic regression", x = "ln(confirmed cases in thousands)",y = "ln(death cases in thousands)") +
+  theme_bw()
 summary(reg2)
 
 #### 3. Piecewise linear spline
@@ -211,7 +218,8 @@ reg3 <- lm_robust(ln_death ~ lspline( ln_confirmed , cutoff_ln ), data = df )
 ggplot( data = df, aes( x = ln_confirmed, y = ln_death ) ) + 
   geom_point( color='blue') +
   geom_smooth( formula = y ~ lspline(x,cutoff_ln) , method = lm , color = 'red' )+
-  labs(title="Piecewise linear spline", x = "ln(confirmed cases in thousands)",y = "ln(death cases in thousands)")
+  labs(title="Piecewise linear spline", x = "ln(confirmed cases in thousands)",y = "ln(death cases in thousands)") +
+  theme_bw()
 summary(reg3)
 
 #### 4.Weighted linear regression, using population weights
@@ -223,7 +231,8 @@ ggplot(data = df, aes(x = ln_confirmed, y = ln_death)) +
   scale_size(range = c(1, 10))+
   labs(title="Weighted linear using population weights", x = "ln(confirmed cases in thousands)",y = "ln(death cases in thousands)")+
   annotate("text", x = 8.8, y = 4, label = "USA", size=5)+
-  annotate("text", x = 3.5, y = 2.5, label = "China", size=5)
+  annotate("text", x = 3.5, y = 2.5, label = "China", size=5) +
+  theme_bw()
 summary(reg4)
 ```
 
