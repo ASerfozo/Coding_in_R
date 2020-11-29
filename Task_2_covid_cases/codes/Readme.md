@@ -1,3 +1,5 @@
+# Properties of codes folder
+
 In the codes folder 3 R script file and an R-markdown file can be found.
 
 The get_covid_data.R file downloads all the neccessary country data from WDI and covid data from the collection of Center for Systems Science and Engineering (CSSE) at Johns Hopkins University.
