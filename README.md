@@ -2,6 +2,7 @@
 
 This is the Coding 1 Data management and analysis with R repository of Attila Serfozo.
 
-There are two main folders in this repository.
-The first is the Coding Task 1 pizza places group project.
-The second is the Coding Task 2 covid-19 pattern of association assignment.
+There are three main folders in this repository.
+- Task 1 pizza places is a data exploration group project
+- Task 2 covid cases is a pattern of association assignment of covid-19 data
+- Task 3 ford focus prices is the final project of the Fall semester with a prediction analysis through multiple regression
