@@ -1,0 +1,104 @@
+---
+title: "Term project - Ford Focus analysis"
+author: "Attila Serfozo"
+date: '2020.12.30'
+output: 
+  pdf_document:
+    number_sections: yes
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+rm(list=ls())
+# loading packages
+library(tidyverse)
+library(ggthemes)
+
+# Import raw data
+data_in <- "https://raw.githubusercontent.com/ASerfozo/Coding_in_R/main/Task_3_ford_focus_prices/data/Clean/ford_focus.csv"
+focusdb <- read_csv(data_in)
+
+# Convert Price to milion HUF
+focusdb <- mutate(focusdb, Price_mHUF = round(Price_HUF / 1000000, 2) )
+focusdb <- select ( focusdb , -Price_HUF)
+
+```
+
+# Introduction
+In this project I analyze whether I can predict the price of my Ford Focus Hatchback car based on the data of available cars on the largest Hungarian used car website (hasznaltauto.hu). The dataset of cars was scraped from the used car website on 2020.10.13 15:32. In the exercise I take into account important variables like price, age of car, kilometers ran, performance in horsepower, fuel type, transmission. Thus I am interested in the connection of price with other variables and will try to build a multiple linear regression model which can predict with good approximation the benchmark price of a selected vehicle.
+
+# Data
+## Data collection
+The data to be analyzed is collected from the largest Hungarian used car website (<https://www.hasznaltauto.hu/>). To be able to conduct a transparent price comparison through the different variables I selected a specific car type, which is in this case the Ford Focus. I wanted to collect data only on used cars only, therefore advertised new cars or demo cars on the website are excluded. I also narrowed down the variety of Ford Focuses to hatchback cars only as sedans, minivans and estate cars have different pricing due to special reasons like they are different market segments or are usually old taxi or police cars pulling down the average price.
+
+Also I wanted to examine the price of the cars registered from 2010, so maximum 10 years old. The motivation behind the age selection is that I also have an approximately 8 years old Ford Focus, as a result I was interested in the price of cars less than 10 years old. Based on these criteria I collected data on 244 Ford Focus cars.
+
+For the data collection I used a publicly available point and click interface web scraper which can be added as an extension to Google Chrome at the following website (<https://webscraper.io/>).
+
+## Data cleaning
+During the cleaning process I needed to decide how to handle missing values. As price is the main variable of the analysis it was an obvious choice to exclude the 2 observation which did not have values for price. Missing month values in registration date were replaced with January to calculate ages of cars. Empty values were also common in cylinder capacity variable, but this can be acceptable as I intended to use horsepower as the main performance attribute. As a result of the cleaning I finished with 242 observations in the dataset. The variables of the cleaned dataset with description can be found detailed in the variables.xlsx.
+
+## Exploration of variables
+
+```{r message=FALSE, warning=FALSE, echo=FALSE}
+focusdb %>%
+  keep(is.numeric) %>% 
+  gather() %>% 
+  ggplot(aes(value)) +
+  facet_wrap(~key, scales = "free") +
+  geom_histogram()+
+  theme_bw()+
+  labs(x="Variable", y="Absolute frequency", title="Distribution of variables")
+
+```
+
+## Extreme values
+The price histogram above is skewed with a right tail The reason of the skewness are seven extreme values with cars above 10 million HUF. These observations are not errors, the cars are Ford Focus RS cars, which are very expensive due to their high performance above 350 HP and their extravagant outlook. Thus I decided to exclude the 8 RS cars as their pricing is special and would make the fit of the regression worse later in the analysis.
+
+```{r echo=FALSE}
+# Filter out extreme values, these are Ford Focus RS cars, almost race cars for race tracks, their pricing is always special
+price_extreme_values <- focusdb
+price_extreme_values <- filter(price_extreme_values, Performance_HP>310)
+price_extreme_values <- select(price_extreme_values, c(ID, Name, Price_mHUF, Registration_date, Kilometers, Performance_HP))
+price_extreme_values <- mutate(price_extreme_values, Name=substr(Name,1,26))
+focusdb <- filter(focusdb, focusdb$Performance_HP<310)
+
+knitr::kable(price_extreme_values,caption="Extreme values in Ford Focus Price distribution - Ford Focus Rs")
+```
+
+# Model
+
+```{r}
+
+
+```
+
+
+
+```{r}
+
+
+```
+
+
+
+```{r}
+
+
+```
+
+
+
+```{r}
+
+
+```
+
+
+
+```{r}
+
+
+```

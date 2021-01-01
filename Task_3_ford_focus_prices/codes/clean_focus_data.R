@@ -9,8 +9,8 @@ rm(list=ls())
 library(tidyverse)
 
 # Import raw data
-data_in <- "C:/Users/Attila/Documents/CEU/Coding_in_R/Task_3_ford_focus_prices/Data/"
-focusdb <- read_csv(paste0(data_in,"Raw/ford_focus_scraping.csv"))
+data_in <- "https://raw.githubusercontent.com/ASerfozo/Coding_in_R/main/Task_3_ford_focus_prices/data/Raw/ford_focus_scraping.csv"
+focusdb <- read_csv(data_in)
 
 # Remove unnecessary variables left from scraping
 focusdb <- select ( focusdb, -c(Pagination , `web-scraper-start-url`, `Pagination-href`, Open_element) )
@@ -46,7 +46,9 @@ focusdb <- rename(focusdb,
 
 # Filter out observations with missing prices
 focusdb <- filter(focusdb, 
-                  Price_HUF != "NA")
+                  Price_HUF != "NA",
+                  Fuel_type != "Elektromos",
+                  Fuel_type !="Benzin/Gáz")
 
 # Converting Transmission observations to Manual/Automatic
 focusdb <- mutate(focusdb, Transmission = ifelse(focusdb$Transmission == "Manuális (6 fokozatú)", "Manuális", 
@@ -78,4 +80,5 @@ focusdb <- select ( focusdb, -c(Month, Registration) )
 focusdb <- focusdb [, c(1,3,4,5,15,7,9,12,11,10,13,6,8,14,2)]
 
 # Writing out the cleaned database to a csv
-write_excel_csv(focusdb , paste0(data_in,"Clean/ford_focus.csv"))
+data_out <- "C:/Users/Attila/Documents/CEU/Coding_in_R/Task_3_ford_focus_prices/Data/Clean/"
+write_excel_csv(focusdb , paste0(data_out,"ford_focus.csv"))
