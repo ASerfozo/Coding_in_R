@@ -38,7 +38,7 @@ Also I wanted to examine the price of the cars registered from 2010, so maximum 
 For the data collection I used a publicly available point and click interface web scraper which can be added as an extension to Google Chrome at the following website (<https://webscraper.io/>).
 
 ## Data cleaning
-During the cleaning process I needed to decide how to handle missing values. As price is the main variable of the analysis it was an obvious choice to exclude the 2 observation which did not have values for price. Missing month values in registration date were replaced with January to calculate ages of cars. Empty values were also common in cylinder capacity variable, but this can be acceptable as I intended to use horsepower as the main performance attribute. As a result of the cleaning I finished with 242 observations in the dataset. The variables of the cleaned dataset with description can be found detailed in the variables.xlsx.
+During the cleaning process I needed to decide how to handle missing values. As price is the main variable of the analysis it was an obvious choice to exclude the 2 observation which did not have values for price. Missing month values in registration date were replaced with January to calculate ages of cars. Empty values were also common in cylinder capacity variable, but this can be acceptable as I intended to use horsepower as the main performance attribute. As a result of the cleaning I finished with 239 observations in the dataset. The variables of the cleaned dataset with description can be found detailed in the variables.xlsx.
 
 ## Exploration of variables
 
