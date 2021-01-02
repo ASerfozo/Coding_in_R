@@ -10,17 +10,11 @@ rm(list=ls())
 # Packages ----------------------------------------------------------------
 
 library(tidyverse)
-
 library(estimatr)   # Estimate robust SE
 library(lspline)    # Estimate piecewise linear splines
 library(segmented)  # For automated knots in PLS
 library(texreg)     # Compare models with robust SE, export results to html
 library(ggthemes)   # For ggplot themes
-# require(scales)   # For scaling ggplots
-
-
- library(AER)
-
 
 
 
@@ -365,6 +359,7 @@ htmlreg( list(reg1 , reg2 , reg3 , reg4 , reg5, reg6),
 
 # Prediction --------------------------------------------------------------
 
+
 ####
 # y_hat-y plot - reg5
 focusdb <- mutate( focusdb , y_hat = predict( reg4 , focusdb ) )
@@ -413,6 +408,7 @@ My_Price <- b0 + b1 * 3 + b2 * 5.67 + b3 * 125 + b4 * 97000
 # Price of my car according to the model is 2.62 mHUF
 
 
+
 # Residual analysis -------------------------------------------------------
 
 
@@ -429,11 +425,122 @@ focusdb %>% top_n( -5 , reg4_res ) %>%
 focusdb %>% top_n( 5 , reg4_res ) %>% 
   select( ID, Name, Price_mHUF, reg4_y_pred , reg4_res, Age, Kilometers, Performance_HP )
 
-# Probability models ------------------------------------------------------
 
 
-# Robustness check --------------------------------------------------------
+# External Validity -------------------------------------------------------
 
 # Check model for Honda Civic Hatchback max 10 years old
+
+####
+# Import cleaned dataset
+data_in_civic <- "https://raw.githubusercontent.com/ASerfozo/Coding_in_R/main/Task_3_ford_focus_prices/data/Clean/honda_civic.csv"
+civicdb <- read_csv(data_in_civic)
+
+####
+# Scale Price to million HUF
+civicdb <- mutate(civicdb, Price_mHUF = round(Price_HUF / 1000000, 2) )
+civicdb <- select ( civicdb , -Price_HUF)
+
+####
+# Create dummy variables from fuel type and transmission
+civicdb <- civicdb %>% mutate(Fuel_type_d=Fuel_type,
+                              Transmission_d=Transmission)
+civicdb$Fuel_type_d <- gsub("Benzin", "0", civicdb$Fuel_type_d)
+civicdb$Fuel_type_d <- gsub("Dízel", "1", civicdb$Fuel_type_d)
+civicdb$Fuel_type_d <- as.numeric(civicdb$Fuel_type_d)
+
+civicdb$Transmission_d <- gsub("Manuális", "0", civicdb$Transmission_d)
+civicdb$Transmission_d <- gsub("Automata", "1", civicdb$Transmission_d)
+civicdb$Transmission_d <- as.numeric(civicdb$Transmission_d)
+
+####
+# Extreme values similarly to Focuses, here Honda Civic Type R cars are the race cars
+filter(civicdb, Price_mHUF > 8)
+civicdb <- filter(civicdb, civicdb$Performance_HP<310)
+
+
+####
+# Check scatterplots
+check_sp <- function(x_var){
+  ggplot( civicdb , aes(x = x_var, y = Price_mHUF)) +
+    geom_point() +
+    geom_smooth(method="loess" , formula = y ~ x )+
+    labs(y = "Averaged values of prices in milion")+
+    theme_economist_white()
+}
+
+check_sp(civicdb$Age)
+# Age is similar, but larger Age values so knot around 5 to choose for spline
+check_sp(civicdb$Kilometers)
+# Kilometers look like the same
+check_sp(civicdb$Performance_HP)
+check_sp(civicdb$Fuel_type_d)
+check_sp(civicdb$Transmission_d)
+
+####
+# Check models
+reg1_e <- lm_robust(Price_mHUF ~ Age  , data = civicdb )
+summary( reg1_e )
+
+reg2_e <- lm_robust(Price_mHUF ~  lspline(Age, 5), data = civicdb )
+summary( reg2_e )
+
+reg3_e <- lm_robust( Price_mHUF ~  lspline(Age, 5) 
+                   + Performance_HP,
+                   data = civicdb )
+summary( reg3_e )
+
+reg4_e <- lm_robust( Price_mHUF ~  lspline(Age, 5) 
+                   + Performance_HP
+                   + Kilometers,
+                   data = civicdb )
+
+summary( reg4_e )
+
+reg5_e <- lm_robust( Price_mHUF ~  lspline(Age, 5) 
+                   + Performance_HP
+                   + Kilometers
+                   + Transmission_d,
+                   data = civicdb )
+summary( reg5_e )
+
+reg6_e <- lm_robust( Price_mHUF ~  lspline(Age, 5) 
+                   + Performance_HP
+                   + Kilometers
+                   + Transmission_d
+                   + Fuel_type_d,
+                   data = civicdb )
+summary( reg6_e )
+
+####
+# Summarize findings:
+htmlreg( list(reg1_e , reg2_e , reg3_e , reg4_e , reg5_e, reg6_e),
+         type = 'html',
+         custom.header = list("Average prices for Honda Civics"=1:6),
+         custom.model.names = c("(1)","(2)","(3)","(4)","(5)","(6)"),
+         custom.coef.names = c("Intercept","Age","Age (<5)","Age (>=5)",
+                               "Performance_HP","Kilometers","Transmission_d","Fuel_type_d"),
+         omit.coef = "Intercept|Performance_HP|Kilometers|Transmission_d|Fuel_type_d",
+         file = paste0( data_out ,'honda_civic_models.html'), include.ci = FALSE,
+         single.row = FALSE, siunitx = TRUE,
+         custom.gof.rows = list( "Performance HP" = c("NO","NO","YES","YES","YES","YES"),
+                                 Kilometers = c("NO","NO","NO","YES","YES","YES"),
+                                 Transmission = c("NO","NO","NO","NO","YES","YES"),
+                                 "Fuel Type" = c("NO","NO","NO","NO","NO","YES")))
+
+# Results:
+# similarly to the Ford Focus database the model has a strong estimation for 
+# car prices with an R-squared of 0.9. Also the regression 4 was the best choice
+# in case of the Honda Civic as well.
+
+####
+# Show prediction for Honda Civic
+civicdb <- mutate( civicdb , y_hat = predict( reg4_e , civicdb ) )
+
+ggplot( data = civicdb ) +
+  geom_point (aes( x = y_hat , y = Price_mHUF ) ,  color="red")+
+  geom_line( aes( x = Price_mHUF , y = Price_mHUF ) , color = "navyblue" , size = 1.5 )+
+  labs( x = "Predicted car prices", y = "Actual car prices")+
+  theme_economist_white()
 
 
