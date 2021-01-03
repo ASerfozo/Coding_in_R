@@ -28,6 +28,9 @@ focusdb <- read_csv(data_in)
 # Scale Price to million HUF
 focusdb <- mutate(focusdb, Price_mHUF = round(Price_HUF / 1000000, 2) )
 focusdb <- select ( focusdb , -Price_HUF)
+# Scale Kilometers to thousand km
+focusdb <- mutate(focusdb, Kilometers_thousand = round(Kilometers / 1000, 1) )
+focusdb <- select ( focusdb , -Kilometers)
 
 # Create dummy variables from fuel type and transmission
 focusdb <- focusdb %>% mutate(Fuel_type_d=Fuel_type,
@@ -51,53 +54,54 @@ focusdb %>%
   gather() %>% 
   ggplot(aes(value)) +
   facet_wrap(~key, scales = "free") +
-  geom_histogram()+
+  geom_histogram(fill='navyblue', col="black", alpha=0.7)+
   theme_economist_white()+
   labs(x="Variable", y="Absolute frequency", title="Distribution of variables")
 
 summary( focusdb )
+
 
 # Check main parameters
 ggplot( focusdb , aes(x = Price_mHUF)) +
   geom_histogram(binwidth=0.5,fill='navyblue', col="black", alpha=0.7) +
   stat_bin(geom = "text", binwidth=0.5,
            aes(label = ifelse(..count.. > 0, ..count.., "")), vjust = -0.5)+
-  labs(y="Absolute Frequency", x = "Distribution of Price in milion HUF", title="Distribution of Price of cars in milion HUF")+
+  labs(y="Absolute Frequency", x = "Price in milion HUF", title="Distribution of Price of cars in milion HUF")+
   theme_economist_white()
 
 ggplot( focusdb , aes(x = Age)) +
   geom_histogram(binwidth=0.5,fill='navyblue', col="black", alpha=0.7) +
   stat_bin(geom = "text", binwidth=0.5,
            aes(label = ifelse(..count.. > 0, ..count.., "")), vjust = -0.5)+
-  labs(y="Absolute Frequency", x = "Distribution of Age", title="Distribution of Age of cars in years")+
+  labs(y="Absolute Frequency", x = "Age in years", title="Distribution of Age of cars in years")+
   theme_economist_white()
 
-ggplot( focusdb , aes(x = Kilometers/1000)) +
+ggplot( focusdb , aes(x = Kilometers_thousand)) +
   geom_histogram( binwidth=20, fill='navyblue', col="black", alpha=0.7) +
   stat_bin(geom = "text", binwidth=20,
            aes(label = ifelse(..count.. > 0, ..count.., "")), vjust = -0.5)+
-  labs(y="Absolute Frequency", x = "Distribution of Kilometers ran", title="Distribution of kilometers ran")+
+  labs(y="Absolute Frequency", x = "Kilometers ran in thousand", title="Distribution of kilometers ran in thousand")+
   theme_economist_white()
 
 ggplot( focusdb , aes(x = Performance_HP)) +
   geom_histogram(binwidth=10,fill='navyblue', col="black", alpha=0.7) +
   stat_bin(geom = "text", binwidth=10,
            aes(label = ifelse(..count.. > 0, ..count.., "")), vjust = -0.5)+
-  labs(y="Absolute Frequency", x = "Distribution of Performance in Horsepower", title="Distribution of power of cars in horsepower")+
+  labs(y="Absolute Frequency", x = "Performance in Horsepower", title="Distribution of power of cars in horsepower")+
   theme_economist_white()
 
 ggplot( focusdb , aes(x = Fuel_type_d)) +
   geom_histogram(binwidth=0.5,fill='navyblue', col="black", alpha=0.7) +
   stat_bin(geom = "text", binwidth = 0.5, 
            aes(label = ifelse(..count.. > 0, ..count.., "")), vjust = -0.4)+
-  labs(y="Absolute Frequency", x = "Distribution of Fuel Type", title="Distribution of fuel type of cars")+
+  labs(y="Absolute Frequency", x = "Fuel Type", title="Distribution of fuel type of cars (0-petrol|1-diesel)")+
   theme_economist_white()
 
 ggplot( focusdb , aes(x = Transmission_d)) +
   geom_histogram(binwidth=0.5,fill='navyblue', col="black", alpha=0.7) +
   stat_bin(geom = "text", binwidth = 0.5, 
            aes(label = ifelse(..count.. > 0, ..count.., "")), vjust = -0.4)+
-  labs(y="Absolute Frequency", x = "Distribution of Transmission Type", title="Distribution of transmission type of cars")+
+  labs(y="Absolute Frequency", x = "Transmission Type", title="Distribution of transmission type of cars (0-manual|1-automatic)")+
   theme_economist_white()
 
 
@@ -110,7 +114,7 @@ price_extreme_values <- focusdb
 filter(price_extreme_values, Price_mHUF > 8)
 
 price_extreme_values <- filter(price_extreme_values, Performance_HP>310)
-price_extreme_values <- select(price_extreme_values, c(ID, Name, Price_mHUF, Registration_date, Kilometers, Performance_HP))
+price_extreme_values <- select(price_extreme_values, c(ID, Name, Price_mHUF, Registration_date, Kilometers_thousand, Performance_HP))
 price_extreme_values <- mutate(price_extreme_values, Name=substr(Name,1,26))
 focusdb <- filter(focusdb, focusdb$Performance_HP<310)
 
@@ -137,9 +141,9 @@ check_sp(log(focusdb$Age))
 # Maybe taking the log og Age helps
 
 # Kilometers ran
-check_sp(focusdb$Kilometers)
+check_sp(focusdb$Kilometers_thousand)
 
-ggplot( focusdb , aes(x = Kilometers, y = log(Price_mHUF))) +
+ggplot( focusdb , aes(x = Kilometers_thousand, y = log(Price_mHUF))) +
   geom_point() +
   geom_smooth(method="loess" , formula = y ~ x )+
   labs(y = "Averaged values of prices in milion")+
@@ -197,7 +201,7 @@ rm(numeric_focusdb, id_cr, pair_names)
 ####
 # Check the correlations only for the main variables
 
-mv_focusdb <- select(focusdb,c(Price_mHUF, Age, Kilometers, Performance_HP_d, Fuel_type_d, Transmission_d,))
+mv_focusdb <- select(focusdb,c(Price_mHUF, Age, Kilometers_thousand, Performance_HP_d, Fuel_type_d, Transmission_d,))
 cT <- cor(mv_focusdb , use = "complete.obs")
 
 ## Check for highly correlated values:
@@ -240,12 +244,13 @@ rm( mv_focusdb, id_cr_h, pair_names_h, id_cr_m, pair_names_m )
 
 # main regression: Price_mHUF = b0 + b1 * Age
 #   reg1: NO controls, simple linear
-#   reg2: NO controls, use piecewise linear spline(P.L.S) with a knot at 3 years old cars
+#   reg2: NO controls, use piecewise linear spline(P.L.S) with a knot at 4 years old cars
 #         also check for optimal knot point
 # Use reg2 and control for:
-#   reg3: performance_hp dummy
-#   reg4: reg3 + Kilometers
-#   reg5: reg4 + salary with P.L.S, knots at 35 and 40, exptot, log of income and scratio
+#   reg3: performance_hp or performance_hp dummy
+#   reg4: reg3 + Kilometers_thousand
+#   reg5: reg4 + transmission type dummy
+#   reg6: reg5 + fuel type dummy
 
 #### reg1: no control, simple linear regression
 reg1 <- lm_robust(Price_mHUF ~ Age  , data = focusdb )
@@ -305,7 +310,7 @@ summary( reg32 )
 # reg4: reg3 + Kilometers
 reg4 <- lm_robust( Price_mHUF ~  lspline(Age, 3) 
                    + Performance_HP
-                   + Kilometers,
+                   + Kilometers_thousand,
                    data = focusdb )
 
 summary( reg4 )
@@ -315,7 +320,7 @@ summary( reg4 )
 
 reg5 <- lm_robust( Price_mHUF ~  lspline(Age, 3) 
                    + Performance_HP
-                   + Kilometers
+                   + Kilometers_thousand
                    + Transmission_d,
                    data = focusdb )
 summary( reg5 )
@@ -324,7 +329,7 @@ summary( reg5 )
 
 reg6 <- lm_robust( Price_mHUF ~  lspline(Age, 3) 
                    + Performance_HP
-                   + Kilometers
+                   + Kilometers_thousand
                    + Transmission_d
                    + Fuel_type_d,
                    data = focusdb )
@@ -341,14 +346,10 @@ htmlreg( list(reg1 , reg2 , reg3 , reg4 , reg5, reg6),
          custom.header = list("Average prices for Ford Focuses"=1:6),
          custom.model.names = c("(1)","(2)","(3)","(4)","(5)","(6)"),
          custom.coef.names = c("Intercept","Age","Age (<3)","Age (>=3)",
-                               "Performance_HP","Kilometers","Transmission_d","Fuel_type_d"),
-         omit.coef = "Intercept|Performance_HP|Kilometers|Transmission_d|Fuel_type_d",
+                               "Performance_HP","Kilometers_thousand","Transmission_d","Fuel_type_d"),
+         reorder.coef = c(2:8,1),
          file = paste0( data_out ,'ford_focus_models.html'), include.ci = FALSE,
-         single.row = FALSE, siunitx = TRUE,
-         custom.gof.rows = list( "Performance HP" = c("NO","NO","YES","YES","YES","YES"),
-                                 Kilometers = c("NO","NO","NO","YES","YES","YES"),
-                                 Transmission = c("NO","NO","NO","NO","YES","YES"),
-                                 "Fuel Type" = c("NO","NO","NO","NO","NO","YES")))
+         single.row = FALSE, siunitx = TRUE)
 # Results:
 # (1) If we only use a simple linear regression, the Age coefficient is -0.42 which is significant at any levels
 # (2) PLS the Age is significant below 3 and above 3 years as well at any significant level
@@ -378,11 +379,11 @@ ggplot( data = focusdb ) +
 # Does adding Fuel Type and Transmission Type increase the prediction?
 reg4_lm <- lm( Price_mHUF ~  lspline(Age, 3) 
                + Performance_HP
-               + Kilometers, data = subset(focusdb,complete.cases(focusdb) ) )
+               + Kilometers_thousand, data = subset(focusdb,complete.cases(focusdb) ) )
 
 reg5_lm <- lm( Price_mHUF ~  lspline(Age, 3) 
                + Performance_HP
-               + Kilometers
+               + Kilometers_thousand
                + Transmission_d
                + Fuel_type_d, data = subset(focusdb,complete.cases(focusdb) ) )
 
@@ -395,16 +396,16 @@ AIC(reg4_lm,reg5_lm)
 ####
 # Predict the price of my Ford Focus car with reg4
 #
-# Price = b0 + b1 * Age(Age<3) + b2 * Age(Age>=3) + b3 * Performanc_HP + b4 * Kilometers
-b0 <- 6.411
+# Price = b0 + b1 * Age(Age<3) + b2 * Age(Age>=3) + b3 * Performanc_HP + b4 * Kilometers_thousand
+b0 <-  6.411
 b1 <- -1.260
 b2 <- -0.2107
-b3 <- 0.01346
-b4 <- -5.143*10^(-6)
+b3 <-  0.01346
+b4 <- -0.005143
 
 # Properties of my Ford Focus car
-# Reg.Date: 2011/2 -> Age 8.67; Performance_HP: 125; Kilometers: 97000
-My_Price <- b0 + b1 * 3 + b2 * 5.67 + b3 * 125 + b4 * 97000
+# Reg.Date: 2011/2 -> Age 8.67; Performance_HP: 125; Kilometers_thousand: 96.8
+My_Price <- b0 + b1 * 3 + b2 * 5.67 + b3 * 125 + b4 * 96.8
 # Price of my car according to the model is 2.62 mHUF
 
 
@@ -419,11 +420,11 @@ focusdb$reg4_res <- focusdb$Price_mHUF - focusdb$reg4_y_pred
 
 # Find countries with largest negative errors
 focusdb %>% top_n( -5 , reg4_res ) %>% 
-  select( ID, Name, Price_mHUF, reg4_y_pred , reg4_res, Registration_date, Kilometers, Performance_HP )
+  select( ID, Name, Price_mHUF, reg4_y_pred , reg4_res, Registration_date, Kilometers_thousand, Performance_HP )
 
 # Find countries with largest positive errors
 focusdb %>% top_n( 5 , reg4_res ) %>% 
-  select( ID, Name, Price_mHUF, reg4_y_pred , reg4_res, Age, Kilometers, Performance_HP )
+  select( ID, Name, Price_mHUF, reg4_y_pred , reg4_res, Age, Kilometers_thousand, Performance_HP )
 
 
 
@@ -440,6 +441,9 @@ civicdb <- read_csv(data_in_civic)
 # Scale Price to million HUF
 civicdb <- mutate(civicdb, Price_mHUF = round(Price_HUF / 1000000, 2) )
 civicdb <- select ( civicdb , -Price_HUF)
+# Scale Kilometers to thousand km
+civicdb <- mutate(civicdb, Kilometers_thousand = round(Kilometers / 1000, 1) )
+civicdb <- select ( civicdb , -Kilometers)
 
 ####
 # Create dummy variables from fuel type and transmission
@@ -452,6 +456,16 @@ civicdb$Fuel_type_d <- as.numeric(civicdb$Fuel_type_d)
 civicdb$Transmission_d <- gsub("Manuális", "0", civicdb$Transmission_d)
 civicdb$Transmission_d <- gsub("Automata", "1", civicdb$Transmission_d)
 civicdb$Transmission_d <- as.numeric(civicdb$Transmission_d)
+
+# Check all histograms
+civicdb %>%
+  keep(is.numeric) %>% 
+  gather() %>% 
+  ggplot(aes(value)) +
+  facet_wrap(~key, scales = "free") +
+  geom_histogram(fill='navyblue', col="black", alpha=0.7)+
+  theme_economist_white()+
+  labs(x="Variable", y="Absolute frequency", title="Distribution of variables")
 
 ####
 # Extreme values similarly to Focuses, here Honda Civic Type R cars are the race cars
@@ -471,7 +485,7 @@ check_sp <- function(x_var){
 
 check_sp(civicdb$Age)
 # Age is similar, but larger Age values so knot around 5 to choose for spline
-check_sp(civicdb$Kilometers)
+check_sp(civicdb$Kilometers_thousand)
 # Kilometers look like the same
 check_sp(civicdb$Performance_HP)
 check_sp(civicdb$Fuel_type_d)
@@ -492,21 +506,21 @@ summary( reg3_e )
 
 reg4_e <- lm_robust( Price_mHUF ~  lspline(Age, 5) 
                    + Performance_HP
-                   + Kilometers,
+                   + Kilometers_thousand,
                    data = civicdb )
 
 summary( reg4_e )
 
 reg5_e <- lm_robust( Price_mHUF ~  lspline(Age, 5) 
                    + Performance_HP
-                   + Kilometers
+                   + Kilometers_thousand
                    + Transmission_d,
                    data = civicdb )
 summary( reg5_e )
 
 reg6_e <- lm_robust( Price_mHUF ~  lspline(Age, 5) 
                    + Performance_HP
-                   + Kilometers
+                   + Kilometers_thousand
                    + Transmission_d
                    + Fuel_type_d,
                    data = civicdb )
@@ -519,14 +533,10 @@ htmlreg( list(reg1_e , reg2_e , reg3_e , reg4_e , reg5_e, reg6_e),
          custom.header = list("Average prices for Honda Civics"=1:6),
          custom.model.names = c("(1)","(2)","(3)","(4)","(5)","(6)"),
          custom.coef.names = c("Intercept","Age","Age (<5)","Age (>=5)",
-                               "Performance_HP","Kilometers","Transmission_d","Fuel_type_d"),
-         omit.coef = "Intercept|Performance_HP|Kilometers|Transmission_d|Fuel_type_d",
+                               "Performance_HP","Kilometers_thousand","Transmission_d","Fuel_type_d"),
+         reorder.coef = c(2:8,1),
          file = paste0( data_out ,'honda_civic_models.html'), include.ci = FALSE,
-         single.row = FALSE, siunitx = TRUE,
-         custom.gof.rows = list( "Performance HP" = c("NO","NO","YES","YES","YES","YES"),
-                                 Kilometers = c("NO","NO","NO","YES","YES","YES"),
-                                 Transmission = c("NO","NO","NO","NO","YES","YES"),
-                                 "Fuel Type" = c("NO","NO","NO","NO","NO","YES")))
+         single.row = FALSE, siunitx = TRUE)
 
 # Results:
 # similarly to the Ford Focus database the model has a strong estimation for 

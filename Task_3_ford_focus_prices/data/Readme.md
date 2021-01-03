@@ -6,5 +6,6 @@ For the data collection I used a publicly available point and click interface we
 
 The raw, scraped data can be found in the raw folder. 
 In the clean folder the filtered and cleaned dataset can be found ready for analysis.
+The clean folder contains a dataset for Honda Civic cars as well for external validity and generalization test.
 
 The Variables.xlsx contains the variables description of the cleaned dataset.
