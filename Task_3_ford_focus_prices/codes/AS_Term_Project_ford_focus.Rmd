@@ -57,7 +57,7 @@ For the data collection I used a publicly available point and click interface we
 
 
 ## Data cleaning
-During the cleaning process we need to decide how to handle missing values. As price is the main variable of the analysis it was an obvious choice to exclude the 2 observations which lacked price values. We scale prices to million HUF and kilometers to thousand km to ease understanding of visualizations. The main variable of interest is age of cars which can be created from Registration Date. In case of missing month values we substitute January to calculate age. Empty values were also common in cylinder capacity variable, but this can be acceptable as we intend to use horsepower as the main performance attribute. As a result of the cleaning process we finish with 239 observations. The variables of the cleaned dataset with their description can be found in the variables.xlsx.
+During the cleaning process we need to decide how to handle missing values. As price is the main variable of the analysis it was an obvious choice to exclude the 2 observations which lacked price values. We scale prices to million HUF and kilometers to thousand km to ease understanding of visualizations. The main variable of interest is age of cars which can be created from Registration Date. In case of missing month values we substitute January to calculate age. Empty values were also common in cylinder capacity variable, but this can be acceptable as we intend to use horsepower as the main performance attribute. Also we exclude the 3 electric cars from the analysis as there are not enough observations on this type of cars to predict their effect on price. As a result of the cleaning process we finish with 239 observations. The variables of the cleaned dataset with their description can be found in the variables.xlsx.
 
 
 ## Exploration of variables
@@ -234,6 +234,9 @@ best5 <-  focusdb %>% top_n( -5 , reg4_res ) %>%
 worst5 <- focusdb %>% top_n( 5 , reg4_res ) %>% 
             select( ID, Price_mHUF, reg4_y_pred , reg4_res, Registration_date, Kilometers_thousand, Performance_HP )
 
+colnames (best5) <- c("ID", "Price mHUF", "Predicted price", "Residual" ,"Registration date", "Kilometers thousand","Performance in HP")
+colnames (worst5) <- c("ID", "Price mHUF", "Predicted price", "Residual" ,"Registration date", "Kilometers thousand","Performance in HP")
+
 knitr::kable(best5,caption="Best Ford Focus cars deals based on model prediction")
 knitr::kable(worst5,caption="Worst Ford Focus cars deals based on model prediction")
 ```
@@ -242,7 +245,7 @@ knitr::kable(worst5,caption="Worst Ford Focus cars deals based on model predicti
 # Generalization and external validity
 So we finished with a model with a strong prediction power, but we should check as well whether it is only true for Ford Focus cars only. To test our results we will do the analysis on another car brand, which is in our case the Honda Civic. As we tried to avoid overfitting our model and the final multiple regression explains 90% of the overall variation in price I would expect the results to be valid. The data we are using was also scraped from hasznaltauto on the date of 2021.01.02 23:12. The scatterplot results can be seen below for Honda Civic.
 
-```{r message=FALSE, warning=FALSE, echo=FALSE, out.width = '50%', fig.height=3.8}
+```{r message=FALSE, warning=FALSE, echo=FALSE, out.width = '50%', fig.height=4}
 
 data_in_civic <- "https://raw.githubusercontent.com/ASerfozo/Coding_in_R/main/Task_3_ford_focus_prices/data/Clean/honda_civic.csv"
 civicdb <- read_csv(data_in_civic)
@@ -288,7 +291,7 @@ ggplot( civicdb, aes( x = Age, y = Price_mHUF ) ) +
 
 After applying the same regression models for the Honda Civic the model gave similarly strong results. The regression explains 92% of overall variation in Honda Civic prices and all variables are significant at 1%. The prediction accuracy can be seen below on the Actual versus predicted price chart. The results of the regressions can be found in the out folder of the project in the honda_civic_models.html file.
 
-```{r message=FALSE, warning=FALSE, echo=FALSE, out.width = '50%', fig.height=3.8, fig.align='center'}
+```{r message=FALSE, warning=FALSE, echo=FALSE, out.width = '50%', fig.height=4, fig.align='center'}
 reg4_e <- lm_robust( Price_mHUF ~  lspline(Age, 3) 
                    + Performance_HP
                    + Kilometers_thousand,
@@ -307,7 +310,7 @@ ggplot( data = civicdb ) +
 
 
 # Summary
-We have analyzed the relationship between Ford Focus Hatchback age and prices. We have used a piecewise linear splines for age of cars with a break at 3 years with extended variables of performance in horsepower and kilometers to catch the pattern better. Using a model we arrived to the conclusion that with 1% level of significant we can conclude that price correlates negatively with age and kilometers and positively with performance in horsepower. According to the model until a Ford Focus is less than 3 years old, it loses in average 1.5 million from it's value in every year on the used car market. On the other, after 3 years, these vehicles tend to worth in average 0.3 million HUF less. Interesting outcome was that including fuel type or transmission type in the model do not seem to have a significant effect on the results.
+We have analyzed the relationship between Ford Focus Hatchback age and prices. We have used a piecewise linear splines for age of cars with a break at 3 years with extended variables of performance in horsepower and kilometers to catch the pattern better. Using a model we arrived to the conclusion that with 1% level of significant we can conclude that price correlates negatively with age and kilometers and positively with performance in horsepower. According to the model until a Ford Focus is less than 3 years old, it loses in average 1.5 million from it's value in every year on the used car market. On the other, after 3 years, these vehicles tend to worth in average 0.3 million HUF less year by year. Interesting outcome was that including fuel type or transmission type in the model do not seem to have a significant effect on the results.
 
 In my view the results can be very interesting for people trying to price their cars based on available cars on the market. I would also suggest as further research areas to test the model for other car segments as well such as estate cars, minivans or luxury cars, whether the prediction power stands there. Also it would be very exciting to compare these results to international car markets as well, such as the German used car website mobile.de.
 
@@ -327,6 +330,7 @@ expl6
 
 ```
 
+\newpage
 
 ## Appendix 2 - Observations with extreme values
 
@@ -345,12 +349,16 @@ knitr::kable(price_extreme_values,caption="Extreme values in Ford Focus Price di
 # reg3 <- lm_robust( Price_mHUF ~  lspline(Age, 3)
 #                    + Performance_HP,
 #                    data = focusdb )
+# reg4 <- lm_robust( Price_mHUF ~  lspline(Age, 3)
+#                    + Performance_HP
+#                    + Kilometers_thousand,
+#                    data = focusdb )
 # 
 # library(huxtable)
 # library(jtools)
 # 
-# mss <- export_summs(reg1,reg2,reg3,
-#                     model.names = c("simple linear","PLS","PLS extended"))
+# mss <- export_summs(reg1,reg2,reg3,reg4,
+#                     model.names = c("simple linear","PLS","PLS extended with HP","PLS extended with HP & km"))
 # rs <- as_hux(mss)
 # rs
 
