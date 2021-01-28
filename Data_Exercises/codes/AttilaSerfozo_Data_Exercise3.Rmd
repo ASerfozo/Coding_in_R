@@ -1,0 +1,88 @@
+---
+title: "Chapter 3 - Data Exercise 2"
+author: "Attila Serfozo"
+date: '2020.10.25 '
+output: pdf_document
+---
+
+```{r include = FALSE}
+rm(list=ls())
+library(tidyverse); library(magrittr); library(moments)
+
+data_in <- "D:/Egyetem/CEU/Fall_Term/Coding_1-Data_Management_and_Analysis_with_R/Coding/Data_Exercises/Data/"
+focusdb <- read_csv(paste0(data_in,"Clean/ford_focus_scraping.csv"))
+```
+
+## Desciptive statistics of price and age of Ford Focus used cars
+
+```{r message=FALSE, echo=FALSE}
+
+focusdb_format <- focusdb
+
+focusdb_format <- mutate(focusdb_format, Price_mHUF = round(Price_HUF / 1000000, 2) )
+
+#Create statistics
+price_sum_stat <- focusdb_format %>% 
+  summarise(
+    mean     = round(mean(Price_mHUF), 2),
+    median   = median(Price_mHUF),
+    std      = round(sd(Price_mHUF), 2),
+    iq_range = round(IQR(Price_mHUF),2),
+    min      = min(Price_mHUF),
+    max      = max(Price_mHUF),
+    skew     = round(moments::skewness(Price_mHUF), 2),
+    numObs   = sum( !is.na( Price_mHUF ) ) )
+
+age_sum_stat <- focusdb %>% 
+  summarise(
+    mean     = round(mean(Age), 2),
+    median   = round(median(Age), 2),
+    std      = round(sd(Age), 2),
+    iq_range = round(IQR(Age),2),
+    min      = round(min(Age), 2),
+    max      = round(max(Age), 2),
+    skew     = round(moments::skewness(Age), 2),
+    numObs   = sum( !is.na( Age ) ) )
+
+focus_summary <- price_sum_stat %>% add_row( age_sum_stat )
+focus_summary <- mutate (focus_summary, variable = c("Price" , "Age"))
+focus_summary <- focus_summary [, c(9,1:8)]
+
+knitr::kable(focus_summary,caption="Summary stat for Ford Focus Hatchback Age and Price (in million HUF)")
+
+```
+
+## Price and age distributions of Ford Focus cars
+
+```{r message=FALSE, echo=FALSE, out.width = '50%'}
+
+ggplot( data = focusdb_format , aes( x = Price_mHUF ) )+
+  geom_histogram( binwidth =0.5, fill= "navyblue",col="black", alpha=0.7) +
+  stat_bin(geom = "text", binwidth = 0.5, 
+           aes(label = ifelse(..count.. > 0, ..count.., "")), vjust = -0.5)+
+  labs(x="Price in million HUF",y="Absolute Frequency", title="Distribution of Ford Focus Hatchback Prices")
+
+ggplot( data = focusdb , aes( x = Age ) )+
+  geom_histogram( binwidth =1, fill= "navyblue",col="black", alpha=0.7) +
+  stat_bin(geom = "text", binwidth = 1, 
+           aes(label = ifelse(..count.. > 0, ..count.., "")), vjust = -0.5)+
+  labs(x="Age of cars in years",y="Absolute Frequency", title="Distribution of Ford Focus Hatchback Ages")
+
+```
+
+## Summary
+
+The results of the Ford Focus Hatchback price and age analysis are a descriptive static table and two histograms. 
+
+The first histogram shows the absolute frequency of less then 10 years old Ford Focus Hatchback prices (in million HUF) with 0.5 million HUF bins. According to the histogram and the descriptive statistics the average price is 3.23 million HUF. The median price is 2.65 million HUF, thus the histogram is skewed with a long right tail. The reason of the skewness are seven extreme values above 10 million HUF (see the observations below in Table 2). These observations are not errors, the cars are Ford Focus RS cars, which are very expensive due to their high performance above 350 HP and their extravagant outlook.
+
+```{r message=FALSE, echo=FALSE}
+price_extreme_values <- focusdb_format
+price_extreme_values <- filter(price_extreme_values, Price_mHUF > 10)
+price_extreme_values <- select(price_extreme_values, c(ID, Price_mHUF, Registration_date, Kilometers, Performance_HP))
+
+knitr::kable(price_extreme_values,caption="Extreme values in Ford Focus Price distribution - Ford Focus Rs")
+
+```
+
+The second histogram shows the absolute frequency of cars based on their age. According to the descriptive statistics the average age of the used Ford Focus cars on sale is around 6.58 years, which means 6 years 7 months. The median age is around 7 years, thus the histogram is skewed with a long left tail. The reason of the skewness is probably that on used cars websites older cars are more frequent than younger ones, but checking this hypothesis would be the scope of another analysis.

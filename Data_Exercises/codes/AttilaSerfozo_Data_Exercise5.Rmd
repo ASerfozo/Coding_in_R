@@ -1,0 +1,168 @@
+---
+title: "Chapter 8 - Data Exercise 5"
+author: "Attila Serfozo"
+date: '2020.12.20 '
+output: pdf_document
+---
+
+```{r include=FALSE}
+# Packages to use
+library(tidyverse)
+require(scales)
+library(lspline)
+library(estimatr)
+library(texreg)
+library(ggthemes)
+library(dplyr)
+
+# Read in data
+data_in <- "https://raw.githubusercontent.com/ASerfozo/Data_Analysis/main/Data_Exercises/Data/Clean/ford_focus_scraping.csv?token=AQXWJCOQXXJWQSZ2CJRY2XK737GHK"
+focusdb <- read_csv(data_in)
+```
+
+## Price distribution of Ford Focus cars
+The histogram shows the absolute frequency of less then 10 years old Ford Focus Hatchback prices (in million HUF) with 0.5 million HUF bins. As we can see the distribution is skewed with a right tail The reason of the skewness are seven extreme values above 10 million HUF (see the observations below in table). These observations are not errors, the cars are Ford Focus RS cars, which are very expensive due to their high performance above 350 HP and their extravagant outlook, thus I decided to exclude the 8 RS cars as their pricing is special and will makes the fit of the regression worse.
+```{r message=FALSE, echo=FALSE, out.width = '50%'}
+# Convert Price to milion HUF
+focusdb <- mutate(focusdb, Price_mHUF = round(Price_HUF / 1000000, 2) )
+
+ggplot( data = focusdb , aes( x = Price_mHUF ) )+
+  geom_histogram( binwidth =0.5, fill= "navyblue",col="black", alpha=0.7) +
+  stat_bin(geom = "text", binwidth = 0.5, 
+           aes(label = ifelse(..count.. > 0, ..count.., "")), vjust = -0.5)+
+  labs(x="Price in million HUF",y="Absolute Frequency", title="Distribution of Ford Focus Hatchback Prices")
+
+```
+
+# Removing extreme values
+
+```{r echo=FALSE}
+
+# Filter out extreme values, these are Ford Focus RS cars, almost race cars for race tracks, their pricind is always special
+price_extreme_values <- focusdb
+price_extreme_values <- filter(price_extreme_values, Performance_HP>310)
+price_extreme_values <- select(price_extreme_values, c(ID, Name, Price_mHUF, Registration_date, Kilometers, Performance_HP))
+focusdb <- filter(focusdb, focusdb$Performance_HP<310)
+
+knitr::kable(price_extreme_values,caption="Extreme values in Ford Focus Price distribution - Ford Focus Rs")
+```
+
+## Transformations
+After checking the transformations I decided to go with log Prices as using log of Price is usually a good method. Changes in percentage is often easier to interpret as well. Also taking log of Price is making the association closer to linear. Keep Age on level provides better interpretation as it is not very practical in percentage differences.
+
+
+```{r message=FALSE, echo=FALSE, out.width = '50%'}
+## Check Transformations
+# level-level
+ggplot( focusdb , aes(x = Age, y = Price_mHUF)) +
+  geom_point() +
+  geom_smooth(method="loess")+
+  labs(y="Price in million HUF",x="Age", title="Level-Level Distribution of Ford Focus Hatchback Prices")
+# level-log
+ggplot( focusdb , aes(x = Age, y = Price_mHUF)) +
+  geom_point() +
+  geom_smooth(method="loess")+
+  labs(y="Price in million HUF",x="Ln Age", title="Level-Log Distribution of Ford Focus Hatchback Prices") +
+  scale_x_continuous( trans = log_trans(),  breaks = c(1,2,5,10,20,50,100,200,500,1000,10000) )
+# log-level
+ggplot( focusdb , aes(x = Age, y = Price_mHUF)) +
+  geom_point() +
+  geom_smooth(method="loess")+
+  labs(y="Ln Price in million HUF",x="Age", title="Log-Level Distribution of Ford Focus Hatchback Prices") +
+  scale_y_continuous( trans = log_trans())
+# log-log
+ggplot( focusdb , aes(x = Age, y = Price_mHUF ))  +
+  geom_point() +
+  geom_smooth(method="loess")+
+  labs(y="Ln Price in million HUF",x="Ln Age", title="Log-Log Distribution of Ford Focus Hatchback Prices") +
+  scale_x_continuous( trans = log_trans(),  breaks = c(1,2,5,10,20,50,100,200,500,1000,10000) )+
+  scale_y_continuous( trans = log_trans() )
+```
+
+## Regression estimation
+Looking at the transformations, the best is the simple linear regression with an R-squared of 0.7504. It was very surprising in the analysis that the Weighted OLS regression with Kilometers in weight had pretty bad results with an R-squared of 0.56. According to the analysis the Weighted OLs with performance in horsepower weights was the second best regression with 0.69 R-squared, so power is more important than kilometers.
+
+```{r message=FALSE, echo=FALSE, out.width = '50%'}
+
+focusdb <- focusdb %>%  mutate( ln_age = log(Age),
+                                ln_price = log(Price_mHUF))
+
+focusdb <- focusdb %>% mutate( Age_sq = Age^2,
+                               Age_cb = Age^3)
+
+# Simple linear regression
+reg1 <- lm_robust( Price_mHUF ~ ln_age , data = focusdb , se_type = "HC2" )
+
+#summary( reg1 )
+
+ggplot( data = focusdb, aes( x = Age, y = ln_price ) ) + 
+  geom_point( color='blue') +
+  geom_smooth( method = lm , color = 'red' )+
+  labs(x = "Age ",y = "ln_price", title="Simple Linear regression")
+
+# Polynomials
+reg2 <- lm_robust( ln_price ~ Age + Age_sq , data = focusdb )
+
+#summary( reg2 )
+
+ggplot( data = focusdb, aes( x = Age, y = ln_price ) ) + 
+  geom_point( color='blue') +
+  geom_smooth( formula = y ~ poly(x,2) , method = lm , color = 'red' )+
+  labs(x = "Age ",y = "ln_price", title="Quadratic")
+
+reg3 <- lm_robust( ln_price ~ Age + Age_sq + Age_cb , data = focusdb )
+
+#summary(reg3)
+
+ggplot( data = focusdb, aes( x = Age, y = ln_price ) ) + 
+  geom_point( color='blue') +
+  geom_smooth( formula = y ~ poly(x,3) , method = lm , color = 'red' )+
+  labs(x = "Age ",y = "ln_price", title="Polynomials - Qubic")
+
+# Regression with piecewise linear spline:
+
+cutoff <- 30
+
+cutoff_ln<- log( cutoff )
+
+reg4 <- lm_robust(ln_price ~ lspline( Age , cutoff_ln ), data = focusdb )
+#summary( reg4 )
+ggplot( data = focusdb, aes( x = Age, y = ln_price ) ) + 
+  geom_point( color='blue') +
+  geom_smooth( formula = y ~ lspline(x,cutoff_ln) , method = lm , color = 'red' )+
+  labs(x = "Age ",y = "ln_price", title="Piecewise linear splines")
+
+# Weighted-OLS
+reg5 <- lm_robust(ln_price ~ Age, data = focusdb , weights = Kilometers)
+#summary( reg5 )
+
+ggplot(data = focusdb, aes(x = Age, y = ln_price)) +
+  geom_point(data = focusdb, aes(size=Kilometers),  color = 'blue', shape = 16, alpha = 0.6,  show.legend=F) +
+  geom_smooth(aes(weight = Kilometers), method = "lm", color='red')+
+  labs(x = "Age ",y = "ln_price", title="Weighted OLS weighted with kilometers")
+
+reg6 <- lm_robust(ln_price ~ Age, data = focusdb , weights = Performance_HP)
+#summary( reg6 )
+
+ggplot(data = focusdb, aes(x = Age, y = ln_price)) +
+  geom_point(data = focusdb, aes(size=Performance_HP),  color = 'blue', shape = 16, alpha = 0.6,  show.legend=F) +
+  geom_smooth(aes(weight = Performance_HP), method = "lm", color='red')+
+  labs(x = "Age ",y = "ln_price", title="Weighted OLS weighted with Performance in Horsepower")
+
+```
+
+## Residuals
+Checking the best deals based on the residuals.
+
+```{r message=FALSE, echo=FALSE}
+focusdb$reg1_y_pred <- reg1$fitted.values
+# Calculate the errors of the model
+focusdb$reg1_res <- focusdb$Price_mHUF - focusdb$reg1_y_pred 
+
+# Find countries with largest negative errors
+top10 <- focusdb %>% top_n( -10 , reg1_res ) %>% 
+  select(ID, Name , Age, Price_mHUF , reg1_y_pred , reg1_res )
+top10 <- top10[order(top10$reg1_res),] %>%  head(10)
+
+knitr::kable(top10,caption="Best Ford Focus deals according to the residuals")
+```
