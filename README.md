@@ -1,4 +1,4 @@
-# Coding_in_R - CEU Business Analytics 2020-2021
+# Coding in R - CEU Business Analytics 2020-2021
 
 This is the Coding Data management and analysis with R repository of Attila Serfozo.
 
