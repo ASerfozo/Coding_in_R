@@ -71,6 +71,10 @@ data %>%
   dplyr::summarize(mean_price = mean(price, na.rm=TRUE))
 
 data %>%
+  group_by(f_bathroom) %>%
+  dplyr::summarize(mean_price = mean(price, na.rm=TRUE))
+
+data %>%
   group_by(f_cancellation_policy) %>%
   dplyr::summarize(mean_price = mean(price, na.rm=TRUE))
 
@@ -105,20 +109,20 @@ ggplot(data=data, aes(x=ln_price)) +
 
 # Distribution of price by room type with boxplot
 #   Entire apartments are much more expensive than private or shared rooms
-ggplot(data = data, aes(x = f_room_type, y = price)) +
+price_roomtype_boxplot <- ggplot(data = data, aes(x = f_room_type, y = price)) +
   stat_boxplot(aes(group = f_room_type), geom = "errorbar", width = 0.3,
                color = "black", size = 0.5, na.rm=T)+
   geom_boxplot(aes(group = f_room_type),
                color = "black", fill = c("indianred2","indianred","indianred4"),
                size = 0.5, width = 0.6, na.rm=T, outlier.shape = NA) +
   scale_y_continuous(expand = c(0.01,0.01),limits = c(0,300), breaks = seq(0,300,100)) +
-  labs(x = "Room type",y = "Price (US dollars)")+
+  labs(title="Distribution of price by room type",x = "Room type",y = "Price (US dollars)")+
   theme_bw()
-
+price_roomtype_boxplot
 
 # Distribution of price by number of accommodates with boxplot
 # Larger places with more people are more expensive and Apartments are more expensive than condominiums
-ggplot(data, aes(x = factor(n_accommodates), y = price,
+price_proptype_boxplot <- ggplot(data, aes(x = factor(n_accommodates), y = price,
                  fill = factor(f_property_type), color=factor(f_property_type))) +
   geom_boxplot(alpha=0.8, na.rm=T, outlier.shape = NA, width = 0.8) +
   stat_boxplot(geom = "errorbar", width = 0.8, size = 0.3, na.rm=T)+
@@ -126,11 +130,66 @@ ggplot(data, aes(x = factor(n_accommodates), y = price,
                      values=c("indianred","indianred4")) +
   scale_fill_manual(name="",
                     values=c("indianred","indianred4")) +
-  labs(x = "Accomodates (Persons)",y = "Price (US dollars)")+
+  labs(title="Distribution of price by number of accommodates", x = "Accomodates (Persons)",y = "Price (US dollars)")+
   scale_y_continuous(expand = c(0.01,0.01), limits=c(0, 400), breaks = seq(0,400, 50))+
   theme_bw() +
   theme(legend.position = c(0.3,0.8)        )
+price_proptype_boxplot
 
+
+# Distribution of price by cancellation type with boxplot
+#   Strict cancellations are more expensive
+price_cancellation_boxplot <- ggplot(data = data, aes(x = f_cancellation_policy, y = price)) +
+  stat_boxplot(aes(group = f_cancellation_policy), geom = "errorbar", width = 0.3,
+               color = "black", size = 0.5, na.rm=T)+
+  geom_boxplot(aes(group = f_cancellation_policy),
+               color = "black", fill = c("indianred2","indianred","indianred4"),
+               size = 0.5, width = 0.6, na.rm=T, outlier.shape = NA) +
+  scale_y_continuous(expand = c(0.01,0.01),limits = c(0,300), breaks = seq(0,300,100)) +
+  labs(title="Distribution of price by cancellation type", x = "Cancellation type",y = "Price (US dollars)")+
+  theme_bw()
+price_cancellation_boxplot
+
+# Distribution of price by bed type with boxplot
+#   Real bed are more expensive
+price_bed_boxplot <- ggplot(data = data, aes(x = f_bed_type, y = price)) +
+  stat_boxplot(aes(group = f_bed_type), geom = "errorbar", width = 0.3,
+               color = "black", size = 0.5, na.rm=T)+
+  geom_boxplot(aes(group = f_bed_type),
+               color = "black", fill = c("indianred2","indianred3"),
+               size = 0.5, width = 0.6, na.rm=T, outlier.shape = NA) +
+  scale_y_continuous(expand = c(0.01,0.01),limits = c(0,300), breaks = seq(0,300,100)) +
+  labs(title="Distribution of price by bed type", x = "Bed type",y = "Price (US dollars)")+
+  theme_bw()
+price_bed_boxplot
+
+# Distribution of price by number of bathrooms with boxplot
+#  More bathroom means higher price
+price_bathroom_boxplot <- ggplot(data = data, aes(x = f_bathroom, y = price)) +
+  stat_boxplot(aes(group = f_bathroom), geom = "errorbar", width = 0.3,
+               color = "black", size = 0.5, na.rm=T)+
+  geom_boxplot(aes(group = f_bathroom),
+               color = "black", fill = c("indianred2","indianred","indianred4"),
+               size = 0.5, width = 0.6, na.rm=T, outlier.shape = NA) +
+  scale_y_continuous(expand = c(0.01,0.01),limits = c(0,300), breaks = seq(0,300,100)) +
+  labs(title="Distribution of price by number of bathrooms",x = "Nr of bathrooms",y = "Price (US dollars)")+
+  theme_bw()
+price_bathroom_boxplot
+
+# Distribution of price by neighbourhood with boxplot
+#  The I. district is much more expensive
+price_neighbourhood_boxplot <- ggplot(data = data, aes(x = f_neighbourhood_cleansed, y = price)) +
+  stat_boxplot(aes(group = f_neighbourhood_cleansed), geom = "errorbar", width = 0.3,
+               color = "black", size = 0.5, na.rm=T)+
+  geom_boxplot(aes(group = f_neighbourhood_cleansed),
+               color = "black", fill = "indianred3",
+               size = 0.5, width = 0.6, na.rm=T, outlier.shape = NA) +
+  scale_y_continuous(expand = c(0.01,0.01),limits = c(0,300), breaks = seq(0,300,100)) +
+  labs(title="Distribution of price by neighbourhood", x = "Neighbourhood",y = "Price (US dollars)")+
+  theme_bw()+
+  theme(axis.text.x = element_text(angle = 90))+
+  scale_x_discrete(labels = c('I','II','III','IV','IX','V','VI','VII','VIII','X','XI','XII','XIII','XIV','XV'))
+price_neighbourhood_boxplot
 
 
 # Define models -----------------------------------------------------------
@@ -207,14 +266,12 @@ train_control <- trainControl(method = "cv",
 
 # For basic vars
 set.seed(2021)
-system.time({
-  ols_model <- train(
+ols_model <- train(
     formula(paste0("price ~", paste0(predictors_1, collapse = " + "))),
     data = data_train,
     method = "lm",
     trControl = train_control
-  )
-})
+)
 
 ols_model_coeffs <-  ols_model$finalModel$coefficients
 ols_model_coeffs_df <- data.frame(
@@ -285,6 +342,12 @@ system.time({
 
 fancyRpartPlot(cart_model$finalModel, sub = "")
 
+saveRDS(ols_model,paste0(data_out, 'OLS1.rds'))
+saveRDS(ols_model2,paste0(data_out, 'OLS2.rds'))
+saveRDS(lasso_model,paste0(data_out, 'lasso.rds'))
+saveRDS(cart_model,paste0(data_out, 'cart.rds'))
+
+
 
 ### RANDOM FOREST
 
@@ -332,6 +395,8 @@ system.time({
 
 rf_model_2
 
+saveRDS(rf_model_1,paste0(data_out, 'RF1.rds'))
+saveRDS(rf_model_2,paste0(data_out, 'RF2.rds'))
 
 # evaluate random forests -------------------------------------------------
 
@@ -383,11 +448,18 @@ results
 
 # Model selection is carried out on this CV RMSE
 # CART and Random forest (smaller model) are performing worse
+result_3 <- imap(final_models, ~{
+  mean(results$values[[paste0(.y,"~Rsquared")]])
+}) %>% unlist() %>% as.data.frame() %>%
+  rename("CV Rsquared" = ".")
+result_3
+
 result_4 <- imap(final_models, ~{
   mean(results$values[[paste0(.y,"~RMSE")]])
 }) %>% unlist() %>% as.data.frame() %>%
   rename("CV RMSE" = ".")
 result_4
+
 
 # Based on MAE, RMSE, R-squared the second RF model is our final model with 10 min vars 5 min nodes
 
@@ -447,7 +519,7 @@ rf_model_2_var_imp_plot <- ggplot(rf_model_2_var_imp_df[rf_model_2_var_imp_df$im
         axis.title.x = element_text(size=6), axis.title.y = element_text(size=6))
 rf_model_2_var_imp_plot
 
-save_fig("RandomForrest-varimp-base",data_out, "large")
+save_fig("RandomForest-varimp-base",data_out, "large")
 # So these are the important features that drives our predictive model
 
 
@@ -467,7 +539,7 @@ rf_model_2_var_imp_plot_b <- ggplot(rf_model_2_var_imp_df[1:10,], aes(x=reorder(
         axis.title.x = element_text(size=4), axis.title.y = element_text(size=4))
 rf_model_2_var_imp_plot_b
 
-save_fig("RandomForrest-varimp-top10",data_out, "small")
+save_fig("RandomForest-varimp-top10",data_out, "small")
 
 
 # arimp plot grouped
@@ -510,7 +582,7 @@ rf_model_2_var_imp_grouped_plot <-
         axis.title.x = element_text(size=4), axis.title.y = element_text(size=4))
 rf_model_2_var_imp_grouped_plot
 
-save_fig("RandomForrest-varimp-group",data_out, "small")
+save_fig("RandomForest-varimp-group",data_out, "small")
 
 
 # Partial Dependence Plots -------------------------------------------------------
@@ -593,10 +665,10 @@ line1 <- c("Type", "", "", "")
 line2 <- c("Apartment size", "", "", "")
 line3 <- c("Borough", "", "", "")
 
-result_3 <- rbind(line2, a, line1, c, line3, b, d) %>%
+result_6 <- rbind(line2, a, line1, c, line3, b, d) %>%
   transform(RMSE = as.numeric(RMSE), `Mean price` = as.numeric(`Mean price`),
             `RMSE/price` = as.numeric(`RMSE/price`))
-result_3
+result_6
 
 
 # Actual versus predicted -------------------------------------------------

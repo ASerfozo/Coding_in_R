@@ -271,20 +271,22 @@ data <- data %>%
   filter(price <= 500)
 
 # Histograms
-ggplot(data, aes(price)) +
+price_distribution <- ggplot(data, aes(price)) +
   geom_histogram(binwidth = 25, fill = "indianred3", color = "black") +
   ylab("Count") +
   xlab("Price") +
   theme_bw()
+price_distribution
 
 # Take log of price
 data <- data %>% mutate(ln_price = log(price))
 
-ggplot(data, aes(ln_price)) +
+log_price_distribution <- ggplot(data, aes(ln_price)) +
   geom_histogram(binwidth = 0.15, fill = "indianred3", color = "black") +
   ylab("Count") +
   xlab("Log price") +
   theme_bw()
+log_price_distribution
 
 #############
 # Accomodates
@@ -490,6 +492,7 @@ summary(data$price)
 to_filter <- sapply(data, function(x) sum(is.na(x)))
 to_filter[to_filter > 0]
 
+rm(df,categoricals,dnames,dnames_i,dummies,i,j,nnames,nnames_i,numericals,to_filter,nreview_plot)
 
 # save workfile
 write.csv(data, paste0(data_out, "airbnb_rome_cleaned.csv"))

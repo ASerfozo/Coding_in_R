@@ -5,3 +5,5 @@ In the folder there are 4 subfolders.
 - In the data folder the raw and clean datatables can be found.
 - In the docs folder the reports are located in html and pdf format.
 - In the out folder the outputs of the codes are located.
+
+Link to github repo of project: https://github.com/ASerfozo/Coding_in_R/tree/main/Task_4_airbnb
