@@ -53,7 +53,7 @@ glimpse(data)
 skim(data)
 
 to_filter <- sapply(data, function(x) sum(is.na(x)))
-to_filter[to_filter > 0]
+sort(to_filter[to_filter > 0])
 
 # drop variables with too many NAs more than 200k and filter years between 2012-2014 
 # with full year balance sheet indicating they are not new firms
@@ -62,7 +62,6 @@ data <- data %>%
   filter(year >= 2012,
          year <= 2014,
          balsheet_length >= 360)
-
 
 # Label Engineering -------------------------------------------------------
 
@@ -95,29 +94,32 @@ data <- df
 
 # Keep only firms with data for the 3 years
 data <- data %>% group_by(comp_id) %>% filter(n() == 3)
-
  
-# We don't need log npw
-# data <- data %>%
-#   group_by(comp_id) %>%
-#   mutate(d1_sales_mil_log = sales_mil_log - Lag(sales_mil_log, 1) ) %>%
-#   ungroup()
 
-# Percentage sales change from previous year
-data <- data %>%
-  group_by(comp_id) %>%
-  mutate(pct_sales_change = (sales_mil / lag(sales_mil)-1)*100)
+
+data <- data %>% group_by(comp_id) %>%
+  mutate(default = ((status_alive == 1) & (lead(status_alive, 2) == 0)) %>%
+           as.numeric(.),
+         CAGR = ifelse( ( (is.na(lead(sales, 2))) & (status_alive == 1) ),
+                        0,((lead(sales, 2) / sales )^(1/2) - 1)*100) ) %>% 
+  ungroup()
+
+data <- data %>% mutate(
+  HyperGrowth = CAGR >= 30) %>% 
+  filter(year <=2013)
+
 
 # CAGR sales change in the last 2 years
 data <- data %>%
   group_by(comp_id) %>%
-  mutate(cagr_sales = ((sales_mil / lag(sales_mil,2))^(1/2)-1)*100)
+  mutate(cagr_sales = ((lead(sales_mil,2) / sales_mil)^(1/2)-1)*100)
 
 data <- data %>%
-  filter(year == 2014,
+  filter(year == 2012,
          cagr_sales != is.na(cagr_sales))
 
 describe(data$cagr_sales)
+describe(data$comp_id)
 
 ggplot(data=data, aes(x=cagr_sales)) +
   geom_histogram(aes(y = (..count..)/sum(..count..)), binwidth = 10, boundary=0,
@@ -131,7 +133,7 @@ ggplot(data=data, aes(x=cagr_sales)) +
 # Create fast growth dummy
 data <- data %>%
   group_by(comp_id) %>%
-  mutate(fast_growth = (cagr_sales > 50) %>%
+  mutate(fast_growth = (cagr_sales > 30) %>%
            as.numeric(.)) %>%
   ungroup()
 
@@ -143,9 +145,6 @@ data <- data %>%
 
 df <- data
 data <- df
-
-# data <- data %>%  
-#   filter(age > 0)
 
 
 ###########################################################
@@ -221,6 +220,7 @@ data <- data %>%
   mutate_at(vars(zero), funs(ifelse(.< 0, 0, .)))
 
 
+
 # for vars that could be any, but are mostly between -1 and 1
 any <-  c("extra_profit_loss_pl", "inc_bef_tax_pl", "profit_loss_year_pl", "share_eq_bs")
 
@@ -277,7 +277,7 @@ data <- data %>%
 
 data <- data %>%
   mutate(fast_growth_f = factor(fast_growth, levels = c(0,1)) %>%
-           recode(., `0` = 'no_fastgrowth', `1` = "fast_growth"))
+           recode(., `0` = 'no_fast_growth', `1` = "fast_growth"))
 
 # no more imputation, drop obs if key vars missing
 data <- data %>%
@@ -296,7 +296,7 @@ ggplot(data = data, aes(x=inc_bef_tax_pl, y=as.numeric(fast_growth))) +
   geom_point(size=2,  shape=20, stroke=2, fill="blue", color="blue") +
   geom_smooth(method="loess", se=F, colour="black", size=1.5, span=0.9) +
   labs(x = "Income before taxes",y = "Fast Growth distribution") +
-  theme_bg() +
+  theme_bw() +
   scale_x_continuous(limits = c(-1.5,1.5), breaks = seq(-1.5,1.5, 0.5))
 
 # check variables
