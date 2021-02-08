@@ -302,7 +302,7 @@ ggplot(data = data, aes(x=inc_bef_tax_pl, y=as.numeric(fast_growth))) +
 # check variables
 # datasummary_skim(data, type="numeric")
 
-write_csv(data,paste0(data_in,"bisnode_firms_clean.csv"))
-write_rds(data,paste0(data_in,"bisnode_firms_clean.rds"))
+write_csv(data,paste0(data_out,"bisnode_firms_clean.csv"))
+write_rds(data,paste0(data_out,"bisnode_firms_clean.rds"))
 
 
