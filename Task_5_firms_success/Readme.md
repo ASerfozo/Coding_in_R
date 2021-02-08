@@ -1,1 +1,1 @@
-This folder contains the probability prediction project of ViktÛria MÈsz·ros and Attila Serfızı for CEU Business Analytics Data Analysis 3.
+# This folder contains the probability prediction project of Vikt√≥ria M√©sz√°ros and Attila Serf√µz√µ for CEU Business Analytics Data Analysis 3.
