@@ -89,24 +89,12 @@ data <- data %>%
   filter(!(sales_mil > 10)) %>%
   filter(!(sales_mil < 0.001))
 
+# save backup
 df <- data
 data <- df
 
 # Keep only firms with data for the 3 years
 data <- data %>% group_by(comp_id) %>% filter(n() == 3)
- 
-
-
-data <- data %>% group_by(comp_id) %>%
-  mutate(default = ((status_alive == 1) & (lead(status_alive, 2) == 0)) %>%
-           as.numeric(.),
-         CAGR = ifelse( ( (is.na(lead(sales, 2))) & (status_alive == 1) ),
-                        0,((lead(sales, 2) / sales )^(1/2) - 1)*100) ) %>% 
-  ungroup()
-
-data <- data %>% mutate(
-  HyperGrowth = CAGR >= 30) %>% 
-  filter(year <=2013)
 
 
 # CAGR sales change in the last 2 years
@@ -139,10 +127,10 @@ data <- data %>%
 
 describe(data$fast_growth)
 
-
 data <- data %>%
   mutate(age = (year - founded_year))
 
+# save backup
 df <- data
 data <- df
 
@@ -304,5 +292,3 @@ ggplot(data = data, aes(x=inc_bef_tax_pl, y=as.numeric(fast_growth))) +
 
 write_csv(data,paste0(data_out,"bisnode_firms_clean.csv"))
 write_rds(data,paste0(data_out,"bisnode_firms_clean.rds"))
-
-
