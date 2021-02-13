@@ -1,0 +1,429 @@
+"n_rating_count","price","f_stars","f_ratingta","n_ratingta_count","hotel_id","n_distance","n_distance_alter","f_accommodation_type","n_rating","d_offer","d_scarce_room","f_city_actual","f_neighbourhood","f_offer_cat","flag_rating","flag_rating_count","flag_ratingta","flag_ratingta_count"
+36,81,"4","4.5",216,21894,2.7,4.4,"Apartment",4.4,1,1,"Vienna","17. Hernals","15-50% offer",0,0,0,0
+189,81,"4","3.5",708,21897,1.7,3.8,"Hotel",3.9,1,0,"Vienna","17. Hernals","1-15% offer",0,0,0,0
+53,85,"4","3.5",629,21901,1.4,2.5,"Hotel",3.7,1,0,"Vienna","Alsergrund","15-50% offer",0,0,0,0
+55,83,"3","4",52,21902,1.7,2.5,"Hotel",4,1,0,"Vienna","Alsergrund","15-50% offer",0,0,0,0
+33,82,"4","3.5",219,21903,1.2,2.8,"Hotel",3.9,1,1,"Vienna","Alsergrund","15-50% offer",0,0,0,0
+25,229,"5","4.5",27,21904,0.9,3,"Apartment",4.8,1,1,"Vienna","Alsergrund","1-15% offer",0,0,0,0
+57,103,"4","3.5",251,21906,0.9,2.4,"Hotel",3.9,0,1,"Vienna","Alsergrund","0% no offer",0,0,0,0
+161,150,"4","4.5",617,21907,1,2.7,"Hotel",4.6,0,0,"Vienna","Alsergrund","0% no offer",0,0,0,0
+50,80,"2","3.5",146,21908,0.7,2.7,"Hotel",3.5,1,1,"Vienna","Alsergrund","1-15% offer",0,0,0,0
+1,153,"3","4",1,21910,1.5,2.7,"Apartment",4,1,1,"Vienna","Alsergrund","15-50% offer",1,1,1,1
+203,60,"4","4",359,21912,1.1,2.7,"Hotel",4.1,1,1,"Vienna","Alsergrund","1-15% offer",0,0,0,0
+251,128,"4","4",829,21913,0.8,2.9,"Hotel",4,0,0,"Vienna","Alsergrund","0% no offer",0,0,0,0
+142,100,"4","4",55,21914,1,2.3,"Apartment",4.5,1,1,"Vienna","Alsergrund","15-50% offer",0,0,0,0
+8,143,"2","4",1,21915,1.2,2.3,"Apartment",3.7,1,1,"Vienna","Alsergrund","15-50% offer",0,0,1,1
+1,106,"2.5","2",74,21916,0.7,2.6,"Hotel",4,0,1,"Vienna","Alsergrund","0% no offer",1,1,0,0
+18,85,"4","4",62,21917,1.7,2.6,"Hotel",4.1,1,0,"Vienna","Alsergrund","1-15% offer",0,0,0,0
+20,77,"3","3.5",97,21918,0.9,2.8,"Hotel",3.7,1,0,"Vienna","Alsergrund","15-50% offer",0,0,0,0
+77,78,"3","3.5",120,21919,0.8,2.8,"Hotel",3.9,1,1,"Vienna","Alsergrund","15-50% offer",0,0,0,0
+76,78,"3","3.5",161,21920,0.9,2.8,"Hotel",4,0,1,"Vienna","Alsergrund","0% no offer",0,0,0,0
+1,260,"3.5","5",2,21921,3.4,0.6,"Apartment",4,0,1,"Vienna","Donaustadt","0% no offer",1,1,0,0
+5,158,"3","4.5",72,21922,3.4,0.6,"Apartment",4.8,0,1,"Vienna","Donaustadt","0% no offer",0,0,0,0
+77,77,"3","4",158,21924,4.2,1.5,"Hotel",3.9,0,1,"Vienna","Donaustadt","0% no offer",0,0,0,0
+193,77,"3","3",91,21925,3.9,1.9,"Hotel",2.7,1,0,"Vienna","Donaustadt","50%-75% offer",0,0,0,0
+94,95,"4","4",228,21926,3.6,1.2,"Hotel",4.3,1,0,"Vienna","Donaustadt","15-50% offer",0,0,0,0
+1,156,"3","4",1,21927,3.8,1.2,"Apartment",3,0,1,"Vienna","Donaustadt","0% no offer",0,0,1,1
+5,145,"3","4.5",205,21928,3.5,0.8,"Bed and breakfast",3.5,0,1,"Vienna","Donaustadt","0% no offer",0,0,0,0
+178,208,"4","4",1085,21930,2.9,0.6,"Hotel",4.1,0,1,"Vienna","Donaustadt","0% no offer",0,0,0,0
+330,87,"3","3.5",423,21933,3.4,0.9,"Hotel",3.7,0,1,"Vienna","Donaustadt","0% no offer",0,0,0,0
+6,131,"2","4",1,21934,2.3,4.9,"Apartment",3.5,1,1,"Vienna","Favoriten","15-50% offer",0,0,1,1
+194,54,"3","4",522,21935,2,4.5,"Hotel",3.5,1,0,"Vienna","Favoriten","50%-75% offer",0,0,0,0
+9,139,"2","3",17,21936,2.4,5,"Apartment",3,1,1,"Vienna","Favoriten","15-50% offer",0,0,0,0
+3,184,"2","4",1,21937,2.8,5.3,"Apartment",3.2,1,1,"Vienna","Favoriten","15-50% offer",0,0,1,1
+1,127,"3","4",1,21938,2.9,5.2,"Apartment",1,1,1,"Vienna","Favoriten","15-50% offer",0,0,1,1
+1,95,"3","4",1,21939,2.5,5.1,"Apartment",4,0,1,"Vienna","Favoriten","0% no offer",1,1,1,1
+441,99,"3.5","4.5",630,21940,1.7,4.2,"Hotel",4.4,0,0,"Vienna","Favoriten","0% no offer",0,0,0,0
+1122,75,"3.5","4.5",573,21941,1.7,4.1,"Hotel",4.4,1,0,"Vienna","Favoriten","15-50% offer",0,0,0,0
+362,76,"3","4",269,21943,2.1,4.6,"Hotel",4.4,1,0,"Vienna","Favoriten","15-50% offer",0,0,0,0
+2,130,"2","4",1,21945,2.5,5.1,"Apartment",3,1,1,"Vienna","Favoriten","15-50% offer",0,0,1,1
+525,91,"4","4.5",741,21946,1.9,4.2,"Hotel",4.5,0,0,"Vienna","Favoriten","0% no offer",0,0,0,0
+1,135,"2","4",1,21947,2.4,5,"Apartment",3,1,1,"Vienna","Favoriten","15-50% offer",0,0,1,1
+113,56,"2","3",183,21948,2,4.5,"Hotel",2,0,1,"Vienna","Favoriten","0% no offer",0,0,0,0
+71,27,"2","3.5",216,21949,2.7,5.1,"Hostel",3.7,0,1,"Vienna","Favoriten","0% no offer",0,0,0,0
+1,88,"3","4",1,21950,2.3,4.6,"Apartment",3,1,1,"Vienna","Favoriten","1-15% offer",0,0,1,1
+22,133,"2","4",1,21951,2.5,4.8,"Apartment",3.5,1,1,"Vienna","Favoriten","15-50% offer",0,0,1,1
+366,33,"2","3.5",491,21956,1.8,4.3,"Hotel",3.4,0,0,"Vienna","Favoriten","0% no offer",0,0,0,0
+1,116,"3.5","4",1,21958,2,4.4,"Apartment",4,0,0,"Vienna","Favoriten","0% no offer",1,1,1,1
+821,71,"4","4",31,21959,1.7,4.2,"Hotel",4,1,0,"Vienna","Favoriten","1-15% offer",0,0,0,0
+16,90,"3.5","4",1,21960,2.7,5.3,"Apartment",3.5,1,1,"Vienna","Favoriten","1-15% offer",0,0,1,1
+23,84,"4","4",1,21962,1.9,4.3,"Apartment",4.1,1,1,"Vienna","Favoriten","15-50% offer",0,0,1,1
+38,63,"3","4",1,21963,2.3,4.7,"Guest House",4.3,1,0,"Vienna","Favoriten","15-50% offer",0,0,1,1
+366,59,"3","2.5",243,21964,13,13,"Hotel",3,1,0,"Fischamend","Fischamend","15-50% offer",0,0,0,0
+77,113,"3","4",259,21965,0.2,2.9,"Hotel",4.4,1,0,"Vienna","Graben","15-50% offer",0,0,0,0
+27,218,"4.5","4",1,21966,0.1,2.9,"Apartment",4.1,1,1,"Vienna","Graben","1-15% offer",0,0,1,1
+144,299,"5","4.5",702,21967,0.1,2.8,"Hotel",4.5,1,1,"Vienna","Graben","50%-75% offer",0,0,0,0
+184,156,"3","4.5",1347,21968,0.3,2.6,"Hotel",4.5,1,1,"Vienna","Innere Stadt","1-15% offer",0,0,0,0
+78,513,"5","5",1126,21969,0.3,2.8,"Hotel",4.8,1,1,"Vienna","Innere Stadt","15-50% offer",0,0,0,0
+319,133,"4","4",466,21970,0.3,2.6,"Hotel",4.3,1,1,"Vienna","Innere Stadt","15-50% offer",0,0,0,0
+73,123,"4","3.5",47,21971,0.5,3.1,"Hotel",4.1,1,1,"Vienna","Innere Stadt","15-50% offer",0,0,0,0
+81,219,"4","4.5",392,21972,0.3,3,"Hotel",4.5,1,1,"Vienna","Innere Stadt","1-15% offer",0,0,0,0
+271,152,"4","4",261,21973,0.3,3,"Hotel",4.3,1,0,"Vienna","Innere Stadt","15-50% offer",0,0,0,0
+211,115,"4","4.5",211,21975,0.1,2.7,"Hotel",4.3,1,1,"Vienna","Innere Stadt","15-50% offer",0,0,0,0
+5,806,"5","4.5",114,21976,0.3,2.8,"Hotel",4.5,1,0,"Vienna","Innere Stadt","15-50% offer",0,0,0,0
+316,138,"4","4.5",463,21977,0.2,2.6,"Hotel",4.5,1,0,"Vienna","Innere Stadt","15-50% offer",0,0,0,0
+28,95,"3","4",1,21979,0.4,2.5,"Apartment",3.7,0,1,"Vienna","Innere Stadt","0% no offer",0,0,1,1
+336,146,"4","4",714,21980,0.1,2.9,"Hotel",4.4,0,0,"Vienna","Innere Stadt","0% no offer",0,0,0,0
+83,103,"3","4",159,21981,0.7,3.1,"Pension",4,0,0,"Vienna","Innere Stadt","0% no offer",0,0,0,0
+1,125,"3.5","4",1,21983,0.5,3.3,"Apartment",4,0,1,"Vienna","Innere Stadt","0% no offer",1,1,1,1
+88,98,"3","3.5",66,21984,0.5,2.6,"Hotel",3.7,0,1,"Vienna","Innere Stadt","0% no offer",0,0,0,0
+140,121,"3.5","4.5",557,21985,0.3,2.5,"Hotel",4.5,1,1,"Vienna","Innere Stadt","15-50% offer",0,0,0,0
+391,149,"4","4",1516,21986,0.2,2.6,"Hotel",4,1,0,"Vienna","Innere Stadt","1-15% offer",0,0,0,0
+320,120,"3","3.5",515,21987,0.3,2.5,"Hotel",3.9,1,0,"Vienna","Innere Stadt","1-15% offer",0,0,0,0
+21,157,"3","4.5",146,21988,0.4,2.9,"Hotel",4.4,1,1,"Vienna","Innere Stadt","1-15% offer",0,0,0,0
+193,261,"5","5",945,21989,0.3,3.1,"Hotel",4.8,1,1,"Vienna","Innere Stadt","15-50% offer",0,0,0,0
+75,145,"3.5","4",48,21990,0.7,3.4,"Apartment",4.1,1,1,"Vienna","Innere Stadt","15-50% offer",0,0,0,0
+35,275,"4","4",16,21991,0.2,2.6,"Apartment",4.3,1,1,"Vienna","Innere Stadt","15-50% offer",0,0,0,0
+1,253,"3.5","4",1,21992,0.2,2.9,"Apartment",4,0,1,"Vienna","Innere Stadt","0% no offer",1,1,1,1
+1,209,"4","4",1,21993,0.2,2.9,"Apartment",4,0,1,"Vienna","Innere Stadt","0% no offer",1,1,1,1
+505,112,"4","4",607,21995,0.2,2.9,"Hotel",4,1,0,"Vienna","Innere Stadt","15-50% offer",0,0,0,0
+386,138,"4","4",273,21996,0.3,2.5,"Hotel",4.3,1,0,"Vienna","Innere Stadt","15-50% offer",0,0,0,0
+109,84,"3","4",171,21997,0.4,2.6,"Pension",4,1,1,"Vienna","Innere Stadt","1-15% offer",0,0,0,0
+626,199,"4.5","4.5",3171,21998,0.3,2.9,"Hotel",4.5,1,0,"Vienna","Innere Stadt","50%-75% offer",0,0,0,0
+334,203,"5","4.5",917,21999,0.3,2.9,"Hotel",4.4,1,0,"Vienna","Innere Stadt","15-50% offer",0,0,0,0
+1,116,"3","3",4,22001,0.2,2.7,"Vacation home Condo",4,0,1,"Vienna","Innere Stadt","0% no offer",1,1,0,0
+1,107,"3.5","4",1,22002,0.2,2.7,"Apartment",4,0,1,"Vienna","Innere Stadt","0% no offer",1,1,1,1
+1,127,"3.5","4",1,22003,0.2,2.7,"Apartment",4,0,1,"Vienna","Innere Stadt","0% no offer",1,1,1,1
+1,104,"3.5","4",1,22004,0.2,2.7,"Apartment",4,0,1,"Vienna","Innere Stadt","0% no offer",1,1,1,1
+11,168,"3.5","3.5",4,22005,0.2,2.6,"Apartment",4,1,1,"Vienna","Innere Stadt","15-50% offer",0,0,0,0
+150,544,"5","4.5",1178,22006,0.5,3.2,"Hotel",4.8,0,0,"Vienna","Innere Stadt","0% no offer",0,0,0,0
+531,252,"5","4.5",1050,22007,0.5,3.2,"Hotel",4.6,1,0,"Vienna","Innere Stadt","1-15% offer",0,0,0,0
+253,323,"5","4.5",1168,22008,0.5,3.2,"Hotel",4.5,1,0,"Vienna","Innere Stadt","15-50% offer",0,0,0,0
+47,158,"3","4",232,22009,0.3,3.1,"Hotel",4.3,0,1,"Vienna","Innere Stadt","0% no offer",0,0,0,0
+19,156,"3.5","4",1,22010,0.2,2.7,"Apartment",4,1,1,"Vienna","Innere Stadt","15-50% offer",0,0,1,1
+124,218,"4","5",1112,22011,0.2,2.6,"Hotel",4.6,1,1,"Vienna","Innere Stadt","50%-75% offer",0,0,0,0
+115,218,"4","4.5",475,22012,0.1,2.7,"Hotel",4.5,1,0,"Vienna","Innere Stadt","15-50% offer",0,0,0,0
+110,135,"3","3.5",162,22013,0.3,2.6,"Hotel",3.9,1,0,"Vienna","Innere Stadt","15-50% offer",0,0,0,0
+16,219,"2","4",1,22014,0.6,2.6,"Apartment",4,1,1,"Vienna","Innere Stadt","15-50% offer",0,0,1,1
+467,179,"4","4.5",423,22016,0.5,3.3,"Hotel",4.4,0,1,"Vienna","Innere Stadt","0% no offer",0,0,0,0
+1,511,"3.5","4",1,22017,0.5,3.3,"Apartment",4,1,1,"Vienna","Innere Stadt","1-15% offer",1,1,1,1
+650,157,"4","4.5",1380,22018,0.7,3.5,"Hotel",4.5,1,0,"Vienna","Innere Stadt","1-15% offer",0,0,0,0
+95,146,"4","4.5",770,22019,0.3,2.8,"Hotel",4.5,0,1,"Vienna","Innere Stadt","0% no offer",0,0,0,0
+564,200,"5","4",1850,22020,0.4,2.9,"Hotel",4.3,1,0,"Vienna","Innere Stadt","15-50% offer",0,0,0,0
+168,157,"4","4",392,22021,0.1,2.8,"Hotel",4.1,0,1,"Vienna","Innere Stadt","0% no offer",0,0,0,0
+1,138,"4","4",1,22022,0.3,2.6,"Apartment",4,0,1,"Vienna","Innere Stadt","0% no offer",1,1,1,1
+175,108,"3","3.5",234,22023,0.3,2.5,"Hotel",3.5,1,1,"Vienna","Innere Stadt","15-50% offer",0,0,0,0
+1,290,"3.5","4",1,22025,0.2,2.6,"Apartment",4,0,1,"Vienna","Innere Stadt","0% no offer",1,1,1,1
+426,127,"4","4",840,22026,0.8,3.1,"Hotel",4,1,0,"Vienna","Innere Stadt","15-50% offer",0,0,0,0
+1,114,"3","4",1,22027,0.7,3,"Guest House",3,0,1,"Vienna","Innere Stadt","0% no offer",0,0,1,1
+148,163,"4","4",388,22028,0.4,2.7,"Hotel",4.1,0,1,"Vienna","Innere Stadt","0% no offer",0,0,0,0
+163,116,"4","4.5",212,22029,0.2,2.8,"Apart-hotel",4.5,1,1,"Vienna","Innere Stadt","15-50% offer",0,0,0,0
+493,226,"5","4.5",2985,22030,0.5,3.3,"Hotel",4.3,1,0,"Vienna","Innere Stadt","15-50% offer",0,0,0,0
+56,231,"4","4.5",282,22031,0.1,2.7,"Hotel",4.4,1,0,"Vienna","Innere Stadt","15-50% offer",0,0,0,0
+247,116,"4","4.5",1274,22032,0.4,2.6,"Hotel",4.4,1,1,"Vienna","Innere Stadt","15-50% offer",0,0,0,0
+169,76,"3","4",167,22033,0.4,2.6,"Guest House",3.7,1,1,"Vienna","Innere Stadt","15-50% offer",0,0,0,0
+1,135,"3.5","4",1,22034,0.3,2.6,"Apartment",1,0,1,"Vienna","Innere Stadt","0% no offer",0,0,1,1
+599,184,"5","4.5",1330,22035,0.6,2.7,"Hotel",4.5,1,0,"Vienna","Innere Stadt","15-50% offer",0,0,0,0
+258,384,"5","5",1207,22036,0.6,2.5,"Hotel",4.8,1,0,"Vienna","Innere Stadt","15-50% offer",0,0,0,0
+703,166,"4","4",1592,22037,0.6,2.8,"Hotel",4.3,1,1,"Vienna","Innere Stadt","15-50% offer",0,0,0,0
+230,187,"5","4",468,22038,0.5,3.1,"Hotel",4.1,1,0,"Vienna","Innere Stadt","15-50% offer",0,0,0,0
+112,371,"5","4.5",1319,22039,0.5,3.1,"Hotel",4.6,1,0,"Vienna","Innere Stadt","1-15% offer",0,0,0,0
+278,156,"4","4.5",272,22040,0.1,2.7,"Pension",4.4,0,1,"Vienna","Innere Stadt","0% no offer",0,0,0,0
+1,220,"3.5","4",1,22041,0.3,2.5,"Apartment",4,0,1,"Vienna","Innere Stadt","0% no offer",1,1,1,1
+81,169,"4","4.5",561,22042,0.3,2.5,"Hotel",4.5,0,1,"Vienna","Innere Stadt","0% no offer",0,0,0,0
+1,103,"3","4",1,22043,0.3,2.7,"Apartment",4,0,1,"Vienna","Innere Stadt","0% no offer",1,1,1,1
+15,266,"5","4",1,22044,0.3,2.6,"Apartment",4.5,0,1,"Vienna","Innere Stadt","0% no offer",0,0,1,1
+203,131,"3","4",338,22045,0.1,2.9,"Pension",3.9,1,1,"Vienna","Innere Stadt","15-50% offer",0,0,0,0
+150,168,"4","4.5",154,22046,0.2,2.8,"Apartment",4.6,0,1,"Vienna","Innere Stadt","0% no offer",0,0,0,0
+1,101,"3","4",1,22047,0.2,2.6,"Apartment",4,0,1,"Vienna","Innere Stadt","0% no offer",1,1,1,1
+1,364,"3.5","4",1,22049,0.2,3,"Apartment",4,0,1,"Vienna","Innere Stadt","0% no offer",1,1,1,1
+404,242,"4","4.5",2165,22050,0.1,2.8,"Hotel",4.8,1,0,"Vienna","Innere Stadt","1-15% offer",0,0,0,0
+123,223,"4","3.5",276,22051,0.5,2.4,"Hotel",3.5,0,1,"Vienna","Innere Stadt","0% no offer",0,0,0,0
+653,149,"4","4.5",930,22052,0.3,2.7,"Hotel",4.4,1,1,"Vienna","Innere Stadt","15-50% offer",0,0,0,0
+1,232,"3.5","4",1,22053,0.2,2.7,"Apartment",4,0,1,"Vienna","Innere Stadt","0% no offer",1,1,1,1
+388,114,"4","4",836,22054,0.5,2.3,"Hotel",4,1,0,"Vienna","Innere Stadt","15-50% offer",0,0,0,0
+1,253,"3.5","4",1,22055,0.1,2.8,"Apartment",2,0,1,"Vienna","Innere Stadt","0% no offer",0,0,1,1
+230,163,"4","4.5",203,22057,0.3,2.6,"Apart-hotel",4.4,1,1,"Vienna","Innere Stadt","15-50% offer",0,0,0,0
+69,116,"3","4.5",774,22059,0.4,3.1,"Pension",4.1,1,1,"Vienna","Innere Stadt","15-50% offer",0,0,0,0
+34,139,"4","3.5",54,22061,0.2,2.9,"Hotel",3.5,1,1,"Vienna","Innere Stadt","1-15% offer",0,0,0,0
+6,91,"3.5","4",1,22063,0.2,2.7,"Apartment",3.2,0,1,"Vienna","Innere Stadt","0% no offer",0,0,1,1
+102,79,"3","3.5",127,22064,1.4,3.6,"Hotel",3.5,1,1,"Vienna","Josefstadt","1-15% offer",0,0,0,0
+65,66,"4","3.5",85,22065,1.1,3.2,"Pension",3.7,1,1,"Vienna","Josefstadt","15-50% offer",0,0,0,0
+9,100,"3","4",17,22066,1.1,3.2,"Apartment",3,1,1,"Vienna","Josefstadt","1-15% offer",0,0,0,0
+11,75,"2.5","3.5",33,22067,1.3,3.4,"Pension",3,1,1,"Vienna","Josefstadt","1-15% offer",0,0,0,0
+51,73,"2","3",87,22068,1.2,3.3,"Pension",3.5,0,1,"Vienna","Josefstadt","0% no offer",0,0,0,0
+298,127,"5","4",876,22069,0.8,3.4,"Hotel",4.1,1,1,"Vienna","Josefstadt","1-15% offer",0,0,0,0
+354,110,"3","4",419,22071,0.9,3.4,"Hotel",4.1,1,0,"Vienna","Josefstadt","15-50% offer",0,0,0,0
+92,88,"3","4",509,22072,0.9,3.3,"Hotel",4.4,1,1,"Vienna","Josefstadt","15-50% offer",0,0,0,0
+66,59,"3","4",88,22073,1.2,3.5,"Pension",3.7,1,0,"Vienna","Josefstadt","15-50% offer",0,0,0,0
+1,355,"4","4",1,22074,1.6,3.8,"Apartment",4,0,1,"Vienna","Josefstadt","0% no offer",1,1,1,1
+128,59,"3","4",967,22075,1.6,3.7,"Hotel",3.9,1,1,"Vienna","Josefstadt","50%-75% offer",0,0,0,0
+530,119,"4","4",1358,22076,0.9,3.4,"Hotel",4,1,0,"Vienna","Josefstadt","1-15% offer",0,0,0,0
+342,152,"4","4",1461,22077,0.9,3.4,"Hotel",4.3,1,0,"Vienna","Josefstadt","1-15% offer",0,0,0,0
+194,102,"4","4",346,22078,1,3.4,"Hotel",4,1,0,"Vienna","Josefstadt","1-15% offer",0,0,0,0
+1,363,"3.5","4",1,22079,1.5,3.5,"Apartment",5,1,1,"Vienna","Josefstadt","1-15% offer",0,0,1,1
+63,54,"3","3",85,22080,1.1,3.4,"Hotel",3.2,1,1,"Vienna","Josefstadt","15-50% offer",0,0,0,0
+67,101,"3","4",44,22081,1.1,3.3,"Apartment",4,1,1,"Vienna","Josefstadt","15-50% offer",0,0,0,0
+84,75,"2","4.5",304,22082,0.9,3.5,"Hotel",4,1,1,"Vienna","Josefstadt","15-50% offer",0,0,0,0
+30,73,"2","4",103,22083,0.9,3.5,"Hotel",3.9,1,1,"Vienna","Josefstadt","1-15% offer",0,0,0,0
+169,94,"3","4",452,22084,1,3.4,"Hotel",4.1,1,1,"Vienna","Josefstadt","15-50% offer",0,0,0,0
+65,64,"4","4",251,22085,1.1,3.3,"Pension",3.5,1,1,"Vienna","Josefstadt","15-50% offer",0,0,0,0
+91,81,"3.5","3.5",260,22086,1,3.3,"Apart-hotel",3.7,1,0,"Vienna","Josefstadt","15-50% offer",0,0,0,0
+1,162,"3","4",1,22087,1.6,4,"Apartment",4,1,1,"Vienna","Josefstadt","15-50% offer",0,0,1,1
+765,115,"4","4.5",2150,22088,0.9,3.5,"Hotel",4.5,1,0,"Vienna","Josefstadt","15-50% offer",0,0,0,0
+80,101,"4","4.5",90,22089,1.2,3.8,"Apartment",4.4,1,1,"Vienna","Josefstadt","15-50% offer",0,0,0,0
+43,68,"3","3.5",182,22090,0.9,3.2,"Hotel",3.7,1,1,"Vienna","Josefstadt","15-50% offer",0,0,0,0
+78,354,"5","4.5",1504,22092,0.4,3.2,"Hotel",4.5,1,0,"Vienna","Kaerntner Strasse","1-15% offer",0,0,0,0
+184,153,"4","4",700,22093,0.2,3,"Hotel",4.1,1,1,"Vienna","Kaerntner Strasse","15-50% offer",0,0,0,0
+276,202,"5","4",615,22094,0.2,3,"Hotel",4.3,1,1,"Vienna","Kaerntner Strasse","15-50% offer",0,0,0,0
+313,169,"4","4",760,22095,0.3,3.1,"Hotel",4.1,1,1,"Vienna","Kaerntner Strasse","1-15% offer",0,0,0,0
+323,182,"4","4.5",327,22097,0.5,3.3,"Hotel",4.5,1,0,"Vienna","Kaerntner Strasse","1-15% offer",0,0,0,0
+1,193,"3","4",1,22098,0.1,2.9,"Apartment",4,0,1,"Vienna","Kaerntner Strasse","0% no offer",1,1,1,1
+90,138,"4","4.5",408,22099,0.2,3,"Pension",4.1,1,1,"Vienna","Kaerntner Strasse","1-15% offer",0,0,0,0
+140,527,"5","5",1748,22100,0.4,3.1,"Hotel",4.8,1,1,"Vienna","Kaerntner Strasse","1-15% offer",0,0,0,0
+512,142,"4","4",837,22101,0.1,2.8,"Hotel",4.4,1,0,"Vienna","Kaerntner Strasse","15-50% offer",0,0,0,0
+1,98,"3.5","4",1,22102,0.4,3.1,"Apartment",4,0,1,"Vienna","Kaerntner Strasse","0% no offer",1,1,1,1
+340,110,"4","4.5",2718,22104,0.6,3.2,"Hotel",4.3,1,0,"Vienna","Landstrasse","1-15% offer",0,0,0,0
+34,82,"3.5","4",25,22107,1.9,3.2,"Apartment",4.1,1,1,"Vienna","Landstrasse","15-50% offer",0,0,0,0
+26,91,"3.5","4",1,22108,0.9,2.4,"Apartment",2.5,1,1,"Vienna","Landstrasse","15-50% offer",0,0,1,1
+1,150,"3.5","4",1,22109,1.6,3,"Apartment",4,0,1,"Vienna","Landstrasse","0% no offer",1,1,1,1
+97,83,"3.5","4.5",35,22110,1.7,3,"Apartment",4.4,1,1,"Vienna","Landstrasse","15-50% offer",0,0,0,0
+11,95,"4.5","4",1,22111,1.8,3.1,"Apartment",4,1,1,"Vienna","Landstrasse","15-50% offer",0,0,1,1
+15,131,"3","4",1,22112,1.4,2.8,"Apartment",3.7,1,0,"Vienna","Landstrasse","15-50% offer",0,0,1,1
+84,162,"4","5",610,22113,1.1,2.8,"Bed and breakfast",4.8,1,1,"Vienna","Landstrasse","15-50% offer",0,0,0,0
+152,177,"5","4",2015,22114,0.5,3,"Hotel",4.3,1,0,"Vienna","Landstrasse","50%-75% offer",0,0,0,0
+3,122,"2","4",1,22115,1.5,3.6,"Apartment",4,1,1,"Vienna","Landstrasse","1-15% offer",0,0,1,1
+25,79,"3","4",1,22116,1.6,3.7,"Apartment",2,0,1,"Vienna","Landstrasse","0% no offer",0,0,1,1
+181,82,"4","4",395,22117,1.4,3.1,"Hotel",4,1,0,"Vienna","Landstrasse","15-50% offer",0,0,0,0
+359,82,"4","4",717,22118,1.7,3.3,"Hotel",4.1,1,1,"Vienna","Landstrasse","1-15% offer",0,0,0,0
+160,66,"3","3.5",203,22119,1.8,3.4,"Hotel",3.9,1,0,"Vienna","Landstrasse","15-50% offer",0,0,0,0
+303,169,"4","4",1208,22120,0.8,2.7,"Hotel",4.1,0,0,"Vienna","Landstrasse","0% no offer",0,0,0,0
+254,59,"3","3.5",189,22122,0.8,2.7,"Guest House",3.7,0,1,"Vienna","Landstrasse","0% no offer",0,0,0,0
+173,109,"4","4",666,22123,1.5,3.8,"Hotel",4.1,0,0,"Vienna","Landstrasse","0% no offer",0,0,0,0
+114,104,"3","3",72,22125,0.7,2.6,"Hotel",3.4,0,1,"Vienna","Landstrasse","0% no offer",0,0,0,0
+249,145,"3.5","4.5",730,22126,0.9,2.5,"Hotel",4.3,1,0,"Vienna","Landstrasse","15-50% offer",0,0,0,0
+1,58,"3.5","4",1,22127,1.4,3.6,"Apartment",2,0,1,"Vienna","Landstrasse","0% no offer",0,0,1,1
+6,107,"4","4",1,22129,1.3,3.4,"Vacation home Condo",4.3,1,1,"Vienna","Landstrasse","15-50% offer",0,0,1,1
+13,85,"3","3.5",183,22130,0.8,2.1,"Hotel",3.5,1,1,"Vienna","Landstrasse","50%-75% offer",0,0,0,0
+18,184,"4","4",5,22131,0.7,2.2,"Apartment",4.5,1,1,"Vienna","Landstrasse","1-15% offer",0,0,0,0
+497,137,"4.5","4",1060,22132,1,3.3,"Hotel",4.1,1,0,"Vienna","Landstrasse","15-50% offer",0,0,0,0
+503,116,"4.5","4.5",1591,22134,1.1,3.3,"Hotel",4.5,1,0,"Vienna","Landstrasse","1-15% offer",0,0,0,0
+70,157,"2","3.5",52,22135,1.1,3.3,"Apartment",3.7,1,0,"Vienna","Landstrasse","15-50% offer",0,0,0,0
+109,110,"3","3.5",529,22136,1.3,3.3,"Hotel",3.7,0,1,"Vienna","Landstrasse","0% no offer",0,0,0,0
+171,134,"4","4.5",343,22138,0.6,3,"Hotel",4.3,1,1,"Vienna","Landstrasse","15-50% offer",0,0,0,0
+79,79,"4","3.5",77,22140,1.3,3.3,"Hotel",3.7,0,1,"Vienna","Landstrasse","0% no offer",0,0,0,0
+13,143,"3","4",1,22141,1.4,3.3,"Apartment",4.5,0,1,"Vienna","Landstrasse","0% no offer",0,0,1,1
+281,132,"4","4",1403,22142,1,3.2,"Hotel",4.1,1,0,"Vienna","Landstrasse","15-50% offer",0,0,0,0
+108,68,"4","4",162,22143,1.3,3.5,"Apartment",4,1,1,"Vienna","Landstrasse","50%-75% offer",0,0,0,0
+267,128,"4","4",1437,22144,0.6,2.3,"Hotel",4.1,1,0,"Vienna","Leopoldstadt","15-50% offer",0,0,0,0
+183,99,"3","4.5",491,22145,1.5,1.6,"Hotel",4.5,0,0,"Vienna","Leopoldstadt","0% no offer",0,0,0,0
+5,149,"2","4",1,22148,0.9,1.9,"Apartment",2.2,1,1,"Vienna","Leopoldstadt","15-50% offer",0,0,1,1
+136,86,"4","3.5",326,22149,1.8,1,"Hotel",4,1,0,"Vienna","Leopoldstadt","50%-75% offer",0,0,0,0
+11,155,"3","4",28,22150,1.9,1.4,"Apartment",4.1,0,0,"Vienna","Leopoldstadt","0% no offer",0,0,0,0
+242,63,"3","3",183,22152,1,1.9,"Hotel",3.4,1,1,"Vienna","Leopoldstadt","1-15% offer",0,0,0,0
+81,157,"2","3.5",12,22153,0.6,2.3,"Apartment",3.7,1,0,"Vienna","Leopoldstadt","15-50% offer",0,0,0,0
+16,134,"3.5","4.5",70,22155,0.6,2.2,"Hotel",4,1,1,"Vienna","Leopoldstadt","15-50% offer",0,0,0,0
+6,141,"5","4",1,22156,1.7,1.4,"Apartment",4.3,1,1,"Vienna","Leopoldstadt","1-15% offer",0,0,1,1
+122,79,"3","4",290,22157,0.9,1.9,"Hotel",3.7,1,0,"Vienna","Leopoldstadt","15-50% offer",0,0,0,0
+250,138,"4","4",1023,22158,0.5,2.3,"Hotel",4,0,0,"Vienna","Leopoldstadt","0% no offer",0,0,0,0
+603,113,"4","4.5",1516,22159,1,1.8,"Hotel",4.5,1,1,"Vienna","Leopoldstadt","15-50% offer",0,0,0,0
+25,171,"3","4",1,22160,1.5,1.3,"Apartment",3.5,1,1,"Vienna","Leopoldstadt","15-50% offer",0,0,1,1
+52,56,"2","4",1666,22161,1.5,1.4,"Hotel",3.5,1,0,"Vienna","Leopoldstadt","1-15% offer",0,0,0,0
+152,84,"3","4",1249,22162,1.5,1.4,"Hotel",3.9,1,0,"Vienna","Leopoldstadt","15-50% offer",0,0,0,0
+293,72,"2","4.5",302,22163,1.1,2,"Hotel",4,1,0,"Vienna","Leopoldstadt","15-50% offer",0,0,0,0
+1,587,"5","5",7,22164,0.7,2.2,"Hotel",1,1,1,"Vienna","Leopoldstadt","15-50% offer",0,0,0,0
+84,68,"3","4",129,22165,0.9,2.1,"Hotel",4,1,1,"Vienna","Leopoldstadt","15-50% offer",0,0,0,0
+208,102,"3.5","4",281,22166,1.5,1.4,"Hotel",3.9,1,0,"Vienna","Leopoldstadt","50%-75% offer",0,0,0,0
+29,96,"3","3.5",7,22167,1.5,1.4,"Apartment",3.4,1,1,"Vienna","Leopoldstadt","15-50% offer",0,0,0,0
+57,81,"1","3.5",141,22168,0.9,1.9,"Hotel",3.7,0,0,"Vienna","Leopoldstadt","0% no offer",0,0,0,0
+267,82,"3","4",727,22169,1.6,1.7,"Hotel",4.1,1,0,"Vienna","Leopoldstadt","15-50% offer",0,0,0,0
+275,66,"3","4",407,22170,1.1,1.7,"Hotel",4,1,1,"Vienna","Leopoldstadt","15-50% offer",0,0,0,0
+23,87,"3","4",51,22171,0.8,2.2,"Apartment",3.9,1,1,"Vienna","Leopoldstadt","15-50% offer",0,0,0,0
+1,364,"4","4",1,22173,0.6,2.3,"Apartment",4,0,1,"Vienna","Leopoldstadt","0% no offer",1,1,1,1
+240,240,"5","4.5",2098,22175,0.4,2.4,"Hotel",4.5,1,0,"Vienna","Leopoldstadt","15-50% offer",0,0,0,0
+374,113,"3","4.5",1686,22176,0.8,2.1,"Hotel",4.5,1,0,"Vienna","Leopoldstadt","15-50% offer",0,0,0,0
+468,106,"3","4.5",1449,22177,1,1.9,"Hotel",4.5,1,1,"Vienna","Leopoldstadt","15-50% offer",0,0,0,0
+422,89,"3","4",1580,22179,1.6,1.2,"Hotel",4.1,1,0,"Vienna","Leopoldstadt","15-50% offer",0,0,0,0
+307,61,"2","4",1027,22180,0.9,2.2,"Hotel",4,1,0,"Vienna","Leopoldstadt","50%-75% offer",0,0,0,0
+2,92,"3.5","4",1,22181,0.8,2.3,"Apartment",4.5,0,1,"Vienna","Leopoldstadt","0% no offer",0,0,1,1
+527,106,"4","4",739,22182,0.8,2,"Hotel",4.1,1,1,"Vienna","Leopoldstadt","15-50% offer",0,0,0,0
+637,100,"4","4",584,22183,0.8,2,"Hotel",4,1,1,"Vienna","Leopoldstadt","15-50% offer",0,0,0,0
+461,75,"3","4",827,22184,0.7,2.2,"Hotel",4.1,1,0,"Vienna","Leopoldstadt","15-50% offer",0,0,0,0
+3,84,"3","4",92,22185,0.8,2.2,"Hotel",2.2,0,1,"Vienna","Leopoldstadt","0% no offer",0,0,0,0
+104,151,"4","4.5",1272,22187,0.5,2.3,"Hotel",4.6,0,0,"Vienna","Leopoldstadt","0% no offer",0,0,0,0
+90,87,"3","3.5",314,22188,0.9,1.9,"Hotel",3.5,0,0,"Vienna","Leopoldstadt","0% no offer",0,0,0,0
+75,117,"4","4.5",836,22189,0.5,2.3,"Hotel",4.4,0,1,"Vienna","Leopoldstadt","0% no offer",0,0,0,0
+139,120,"4","4",807,22190,1.9,1.9,"Hotel",4.5,1,0,"Vienna","Leopoldstadt","50%-75% offer",0,0,0,0
+1,132,"3.5","4",1,22191,0.8,2.1,"Apartment",4,0,1,"Vienna","Leopoldstadt","0% no offer",1,1,1,1
+41,68,"2.5","4",85,22192,0.9,1.9,"Hotel",3.9,0,0,"Vienna","Leopoldstadt","0% no offer",0,0,0,0
+122,383,"3","4",382,22193,1.9,4.7,"Hotel",4,0,1,"Vienna","Margareten","0% no offer",0,0,0,0
+6,160,"4","4",1,22194,1.6,4.4,"Apartment",4.3,1,1,"Vienna","Margareten","1-15% offer",0,0,1,1
+1,135,"2","4",1,22195,2,4.8,"Apartment",4,0,1,"Vienna","Margareten","0% no offer",1,1,1,1
+137,111,"4.5","4.5",659,22196,2,4.8,"Hotel",4.5,1,0,"Vienna","Margareten","15-50% offer",0,0,0,0
+144,174,"4","4.5",1650,22198,1.5,4.3,"Hotel",4.3,0,0,"Vienna","Margareten","0% no offer",0,0,0,0
+80,63,"3","3.5",335,22199,2,4.7,"Hotel",3.5,1,0,"Vienna","Margareten","15-50% offer",0,0,0,0
+11,73,"3","4",1,22200,1.4,4.2,"Apartment",4.3,0,1,"Vienna","Margareten","0% no offer",0,0,1,1
+58,100,"3.5","4.5",15,22201,1.5,4.3,"Hotel",4.5,0,0,"Vienna","Margareten","0% no offer",0,0,0,0
+1,162,"3.5","4",1,22202,1.7,4.4,"Apartment",4,0,1,"Vienna","Margareten","0% no offer",1,1,1,1
+303,86,"4","3.5",1708,22203,1.4,4.2,"Hotel",3.9,1,0,"Vienna","Margareten","1-15% offer",0,0,0,0
+1,103,"3","4",1,22204,1.9,4.7,"Guest House",4,0,1,"Vienna","Margareten","0% no offer",1,1,1,1
+82,67,"3","4",909,22205,1.8,4.5,"Hotel",4,1,0,"Vienna","Margareten","15-50% offer",0,0,0,0
+248,129,"4","4",372,22206,1.3,4.1,"Hotel",4.1,1,0,"Vienna","Margareten","1-15% offer",0,0,0,0
+151,80,"3","4",161,22208,1.9,4.6,"Apartment",4.1,1,1,"Vienna","Margareten","50%-75% offer",0,0,0,0
+7,131,"2","4",1,22209,1.9,4.7,"Apartment",3.2,1,1,"Vienna","Margareten","15-50% offer",0,0,1,1
+2,150,"3.5","4",1,22210,1.6,4.3,"Apartment",5,1,1,"Vienna","Margareten","1-15% offer",0,0,1,1
+3,159,"3","4",1,22211,1.1,3.9,"Apartment",4.6,1,1,"Vienna","Mariahilf","15-50% offer",0,0,1,1
+85,86,"3","4",383,22212,1.3,4.1,"Hotel",4,0,1,"Vienna","Mariahilf","0% no offer",0,0,0,0
+3,96,"2","4",1,22213,0.9,3.6,"Hotel",3.7,0,1,"Vienna","Mariahilf","0% no offer",0,0,1,1
+258,131,"4","4",682,22214,0.7,3.4,"Hotel",4.1,1,0,"Vienna","Mariahilf","1-15% offer",0,0,0,0
+13,103,"4","4",1,22215,2,4.7,"Apartment",4.1,1,1,"Vienna","Mariahilf","15-50% offer",0,0,1,1
+95,85,"2","4",618,22217,1,3.8,"Hotel",4,1,0,"Vienna","Mariahilf","15-50% offer",0,0,0,0
+44,80,"3","3.5",170,22218,1.4,4.2,"Hotel",3.9,0,0,"Vienna","Mariahilf","0% no offer",0,0,0,0
+125,93,"4","4",410,22219,1.1,3.9,"Hotel",4,1,1,"Vienna","Mariahilf","15-50% offer",0,0,0,0
+5,81,"3.5","4",1,22221,1.8,4.6,"Apartment",4.5,1,1,"Vienna","Mariahilf","15-50% offer",0,0,1,1
+161,77,"3","4",2102,22222,1.9,4.6,"Hotel",4,1,0,"Vienna","Mariahilf","1-15% offer",0,0,0,0
+210,140,"4","5",1495,22223,0.8,3.6,"Hotel",4.8,1,1,"Vienna","Mariahilf","15-50% offer",0,0,0,0
+264,99,"4","4",1228,22224,1,3.8,"Hotel",4,1,1,"Vienna","Mariahilf","15-50% offer",0,0,0,0
+49,75,"4","4",151,22225,1.1,3.9,"Pension",4.1,0,1,"Vienna","Mariahilf","0% no offer",0,0,0,0
+162,105,"4","4.5",716,22226,1.4,4.1,"Hotel",4.4,1,0,"Vienna","Mariahilf","15-50% offer",0,0,0,0
+581,100,"3.5","4.5",1414,22227,1.7,4.4,"Hotel",4.5,1,0,"Vienna","Mariahilf","15-50% offer",0,0,0,0
+55,89,"3","4",67,22228,1,3.8,"Pension",3.7,1,1,"Vienna","Mariahilf","15-50% offer",0,0,0,0
+39,82,"3","3.5",78,22229,1.1,3.9,"Hotel",3.9,1,0,"Vienna","Mariahilf","15-50% offer",0,0,0,0
+484,82,"4","4",1150,22230,1.8,4.5,"Hotel",3.9,0,0,"Vienna","Mariahilf","0% no offer",0,0,0,0
+1,88,"3","4",1,22231,1.8,4.5,"Apartment",4,1,1,"Vienna","Mariahilf","15-50% offer",1,1,1,1
+1,150,"3","4",1,22233,1.6,4.4,"Apartment",4,0,1,"Vienna","Mariahilf","0% no offer",1,1,1,1
+10,134,"2","4",1,22234,1.6,4.4,"Apartment",3.7,1,1,"Vienna","Mariahilf","1-15% offer",0,0,1,1
+45,87,"4","4",290,22235,1.9,4.7,"Hotel",3.5,1,0,"Vienna","Mariahilf","15-50% offer",0,0,0,0
+98,100,"4","3.5",372,22236,1.6,4.3,"Hotel",3.7,1,0,"Vienna","Mariahilf","15-50% offer",0,0,0,0
+239,84,"4","4",561,22237,1.6,4.3,"Hotel",4.3,1,0,"Vienna","Mariahilf","15-50% offer",0,0,0,0
+170,52,"2","4",112,22238,0.9,3.7,"Hotel",3.7,1,1,"Vienna","Mariahilf","15-50% offer",0,0,0,0
+100,98,"4","4",650,22239,0.8,3.5,"Hotel",3.7,1,1,"Vienna","Neubau","15-50% offer",0,0,0,0
+310,333,"5","5",1523,22240,0.7,3.4,"Hotel",4.9,1,0,"Vienna","Neubau","1-15% offer",0,0,0,0
+305,99,"3","4",1171,22241,1.8,4.4,"Hotel",4.1,0,0,"Vienna","Neubau","0% no offer",0,0,0,0
+105,77,"3","4",98,22243,1.5,4.1,"Bed and breakfast",4,1,1,"Vienna","Neubau","15-50% offer",0,0,0,0
+6,160,"3.5","4",1,22244,1.6,4.3,"Apartment",4.6,1,1,"Vienna","Neubau","1-15% offer",0,0,1,1
+1,160,"3.5","4",1,22245,1.6,4.3,"Apartment",5,1,1,"Vienna","Neubau","1-15% offer",0,0,1,1
+141,76,"3","3.5",265,22246,1.6,4.2,"Hotel",3.5,1,0,"Vienna","Neubau","1-15% offer",0,0,0,0
+14,89,"3","4",36,22247,1.6,4.1,"Bed and breakfast",4.4,1,1,"Vienna","Neubau","15-50% offer",0,0,0,0
+6,113,"3","4",1,22248,0.8,3.6,"Hotel",3.7,0,1,"Vienna","Neubau","0% no offer",0,0,1,1
+328,110,"4","4.5",2436,22249,0.9,3.6,"Hotel",4.4,1,0,"Vienna","Neubau","15-50% offer",0,0,0,0
+123,184,"4","4.5",2431,22250,1,3.7,"Hotel",4.6,1,0,"Vienna","Neubau","50%-75% offer",0,0,0,0
+181,33,"2","3.5",308,22251,1.7,4.2,"Hotel",3.2,1,0,"Vienna","Neubau","50%-75% offer",0,0,0,0
+77,1012,"3","4",364,22252,1,3.8,"Hotel",4.3,1,1,"Vienna","Neubau","1-15% offer",0,0,0,0
+308,99,"4","4",612,22253,1.7,4.4,"Hotel",4.1,1,0,"Vienna","Neubau","15-50% offer",0,0,0,0
+54,122,"3","4",143,22254,0.8,3.5,"Hotel",3.9,1,1,"Vienna","Neubau","1-15% offer",0,0,0,0
+544,122,"4","4",978,22255,1.7,4.3,"Hotel",4.3,1,0,"Vienna","Neubau","1-15% offer",0,0,0,0
+359,105,"4","4",816,22256,1.7,4.3,"Hotel",4,0,0,"Vienna","Neubau","0% no offer",0,0,0,0
+3,98,"4","4",1,22257,1.7,4.2,"Apartment",5,1,1,"Vienna","Neubau","15-50% offer",0,0,1,1
+1,92,"3.5","4",1,22258,1.4,4.1,"Apartment",4,0,1,"Vienna","Neubau","0% no offer",1,1,1,1
+98,109,"4","4",582,22259,1.4,4,"Hotel",4,1,0,"Vienna","Neubau","15-50% offer",0,0,0,0
+54,105,"3","4.5",412,22260,1.2,3.9,"Hotel",4.1,1,1,"Vienna","Neubau","15-50% offer",0,0,0,0
+22,133,"2","4",1,22265,2,4.4,"Apartment",3.2,1,1,"Vienna","Ottakring","15-50% offer",0,0,1,1
+4,133,"2.5","4",1,22266,2.3,4.6,"Apartment",4.3,0,1,"Vienna","Ottakring","0% no offer",0,0,1,1
+69,52,"3","3.5",193,22268,3.1,5.2,"Hotel",3.5,1,0,"Vienna","Ottakring","15-50% offer",0,0,0,0
+17,134,"2","4",1,22269,1.8,4.1,"Apartment",3.7,1,1,"Vienna","Ottakring","15-50% offer",0,0,1,1
+83,80,"4","4",265,22271,4.1,6,"Hotel",4,1,0,"Vienna","Ottakring","15-50% offer",0,0,0,0
+36,91,"2","4",42,22272,2.9,5.3,"Hotel",4,0,1,"Vienna","Rudolfsheim-Funfhaus","0% no offer",0,0,0,0
+1,129,"4","4",1,22273,2.6,5.2,"Apartment",4,1,1,"Vienna","Rudolfsheim-Funfhaus","1-15% offer",1,1,1,1
+153,47,"2","3.5",549,22274,1.9,4.6,"Hostel",3.7,0,1,"Vienna","Rudolfsheim-Funfhaus","0% no offer",0,0,0,0
+136,70,"4","3.5",1020,22275,1.8,4.4,"Hotel",3.9,1,0,"Vienna","Rudolfsheim-Funfhaus","15-50% offer",0,0,0,0
+17,88,"3.5","4",1,22276,2.3,4.9,"Apartment",2.2,1,1,"Vienna","Rudolfsheim-Funfhaus","1-15% offer",0,0,1,1
+156,136,"3","4.5",1452,22277,1.9,4.5,"Hotel",4.5,1,0,"Vienna","Rudolfsheim-Funfhaus","15-50% offer",0,0,0,0
+81,80,"3","4",464,22279,2.1,4.8,"Hotel",4.1,1,1,"Vienna","Rudolfsheim-Funfhaus","15-50% offer",0,0,0,0
+40,131,"2","4",1,22280,2.3,4.9,"Apartment",3.9,1,1,"Vienna","Rudolfsheim-Funfhaus","15-50% offer",0,0,1,1
+54,81,"3","4.5",635,22281,2.4,4.9,"Hotel",4.1,1,1,"Vienna","Rudolfsheim-Funfhaus","1-15% offer",0,0,0,0
+13,133,"2","4",1,22284,2.5,5.1,"Apartment",3.7,1,0,"Vienna","Rudolfsheim-Funfhaus","15-50% offer",0,0,1,1
+225,66,"4","3.5",388,22285,3.6,6.1,"Hotel",3.7,1,1,"Vienna","Rudolfsheim-Funfhaus","1-15% offer",0,0,0,0
+144,77,"3","4",241,22286,2.8,5.5,"Hotel",4,1,0,"Vienna","Rudolfsheim-Funfhaus","1-15% offer",0,0,0,0
+2,121,"3","4",1,22287,1.8,4.4,"Apartment",4.5,0,1,"Vienna","Rudolfsheim-Funfhaus","0% no offer",0,0,1,1
+525,69,"4","3.5",399,22288,2.1,4.8,"Hotel",3.7,1,0,"Vienna","Rudolfsheim-Funfhaus","1-15% offer",0,0,0,0
+113,83,"3","4",260,22289,2.1,4.8,"Hotel",4.1,1,0,"Vienna","Rudolfsheim-Funfhaus","15-50% offer",0,0,0,0
+10,53,"2","4.5",604,22290,1.9,4.6,"Hostel",4.1,0,1,"Vienna","Rudolfsheim-Funfhaus","0% no offer",0,0,0,0
+2,133,"3.5","4",1,22291,2.7,5.3,"Apartment",4,1,1,"Vienna","Rudolfsheim-Funfhaus","15-50% offer",0,0,1,1
+78,77,"4","3",212,22293,1.8,4.5,"Hotel",3.9,1,0,"Vienna","Rudolfsheim-Funfhaus","15-50% offer",0,0,0,0
+69,48,"2","4.5",945,22294,2,4.7,"Hostel",4.5,0,1,"Vienna","Rudolfsheim-Funfhaus","0% no offer",0,0,0,0
+314,142,"4.5","4",831,22295,2.9,5.5,"Hotel",4.3,1,0,"Vienna","Rudolfsheim-Funfhaus","50%-75% offer",0,0,0,0
+134,121,"4","4",7,22296,1.7,4.3,"Hotel",3.9,1,0,"Vienna","Rudolfsheim-Funfhaus","1-15% offer",0,0,0,0
+38,68,"3","4",116,22299,3.6,6.2,"Hotel",3.5,1,1,"Vienna","Schonbrunn","15-50% offer",0,0,0,0
+65,63,"3","3.5",199,22300,2,4.8,"Hotel",3.7,0,0,"Vienna","Schonbrunn","0% no offer",0,0,0,0
+92,101,"3","4.5",187,22301,2.1,4.9,"Hotel",4.5,0,0,"Vienna","Schonbrunn","0% no offer",0,0,0,0
+100,75,"4","3.5",309,22302,2.6,5.4,"Hotel",3.7,1,0,"Vienna","Schonbrunn","15-50% offer",0,0,0,0
+910,156,"4","4",1122,22303,3.6,6.2,"Hotel",4.3,0,0,"Vienna","Schonbrunn","0% no offer",0,0,0,0
+79,56,"3","4",177,22304,3.7,6.3,"Hotel",3.5,1,0,"Vienna","Schonbrunn","15-50% offer",0,0,0,0
+1541,82,"3.5","4.5",1245,22306,2.4,5.2,"Hotel",4.5,1,0,"Vienna","Schonbrunn","15-50% offer",0,0,0,0
+183,82,"4","4",1148,22307,2.6,5.4,"Hotel",4.4,1,0,"Vienna","Schonbrunn","15-50% offer",0,0,0,0
+30,106,"3","3",69,22309,4.1,6.8,"Hotel",3.7,0,1,"Vienna","Schonbrunn","0% no offer",0,0,0,0
+24,85,"3","3",114,22310,3.1,5.9,"Hotel",2.7,1,1,"Vienna","Schonbrunn","1-15% offer",0,0,0,0
+18,83,"3.5","4",1,22311,2.6,5.4,"Hotel",4.5,1,1,"Vienna","Schonbrunn","15-50% offer",0,0,1,1
+140,92,"4","4",753,22312,2.9,5.6,"Hotel",4.1,1,0,"Vienna","Schonbrunn","1-15% offer",0,0,0,0
+14,169,"3","4",1,22314,2.3,5.1,"Apartment",4.3,0,1,"Vienna","Schonbrunn","0% no offer",0,0,1,1
+8,77,"3","4.5",79,22315,2.7,5.4,"Guest House",3.5,1,1,"Vienna","Schonbrunn","15-50% offer",0,0,0,0
+333,92,"3","4",196,22317,11,11,"Hotel",4.3,0,0,"Schwechat","Schwechat","0% no offer",0,0,0,0
+923,166,"4","4",2400,22318,11,11,"Hotel",4,1,0,"Schwechat","Schwechat","1-15% offer",0,0,0,0
+122,137,"4","3.5",191,22319,7.7,7.9,"Hotel",3.7,0,1,"Schwechat","Schwechat","0% no offer",0,0,0,0
+26,99,"3","3.5",191,22320,7.7,7.9,"Hotel",3.7,0,0,"Schwechat","Schwechat","0% no offer",0,0,0,0
+73,140,"4","4",127,22321,7.8,8,"Hotel",3.5,0,1,"Schwechat","Schwechat","0% no offer",0,0,0,0
+161,80,"3","3.5",247,22322,6.3,6.9,"Hotel",3.2,0,0,"Schwechat","Schwechat","0% no offer",0,0,0,0
+39,91,"3","3.5",161,22323,6.7,8.2,"Hotel",3.5,0,0,"Schwechat","Schwechat","0% no offer",0,0,0,0
+1,105,"3.5","4",1,22324,4.3,6.7,"Apartment",4,1,1,"Vienna","Vienna","1-15% offer",1,1,1,1
+2,130,"2","4",1,22325,2.6,5.4,"Apartment",4,0,1,"Vienna","Vienna","0% no offer",0,0,1,1
+16,110,"3","4.5",29,22326,4.7,7,"Pension",4.3,1,1,"Vienna","Vienna","1-15% offer",0,0,0,0
+124,117,"4","4",192,22328,2,3.4,"Hotel",4,0,0,"Vienna","Vienna","0% no offer",0,0,0,0
+9,106,"4","4",12,22330,5.4,8.1,"Pension",4.1,0,1,"Vienna","Vienna","0% no offer",0,0,0,0
+33,66,"3","3.5",129,22331,3.9,6.4,"Hotel",3.7,0,0,"Vienna","Vienna","0% no offer",0,0,0,0
+16,266,"5","5",2,22332,3.5,1.3,"Apartment",4.6,1,1,"Vienna","Vienna","1-15% offer",0,0,0,0
+57,58,"2","3.5",1051,22333,2.4,3.7,"Hotel",3.5,0,0,"Vienna","Vienna","0% no offer",0,0,0,0
+21,81,"3.5","3",12,22334,3.7,6.4,"Hotel",4.1,1,1,"Vienna","Vienna","1-15% offer",0,0,0,0
+160,109,"4","3.5",386,22335,3.5,6.2,"Hotel",4,1,0,"Vienna","Vienna","1-15% offer",0,0,0,0
+985,114,"4.5","4.5",2454,22336,2.3,1.9,"Hotel",4.3,1,0,"Vienna","Vienna","50%-75% offer",0,0,0,0
+69,125,"3.5","4",261,22337,2.3,1.1,"Apart-hotel",4.4,1,0,"Vienna","Vienna","1-15% offer",0,0,0,0
+51,69,"3","3.5",53,22338,1.7,1.8,"Guest House",3.7,1,1,"Vienna","Vienna","1-15% offer",0,0,0,0
+1,69,"3","4",1,22339,2.6,2.3,"Apartment",4,0,1,"Vienna","Vienna","0% no offer",1,1,1,1
+72,97,"4","4",277,22340,3.1,5.9,"Hotel",4,1,0,"Vienna","Vienna","15-50% offer",0,0,0,0
+65,74,"4","4",73,22341,4.8,7.3,"Hotel",3.9,1,1,"Vienna","Vienna","15-50% offer",0,0,0,0
+147,69,"4","3.5",320,22342,3.7,6.4,"Hotel",3.7,1,0,"Vienna","Vienna","15-50% offer",0,0,0,0
+45,83,"4","3.5",121,22343,3.9,6.6,"Hotel",4,1,0,"Vienna","Vienna","15-50% offer",0,0,0,0
+50,50,"3","4",12,22344,3.9,6.6,"Hotel",3.9,1,0,"Vienna","Vienna","15-50% offer",0,0,0,0
+27,130,"2","3.5",36,22345,4.7,7.4,"Apartment",3.2,1,0,"Vienna","Vienna","15-50% offer",0,0,0,0
+2,134,"3","4",1,22346,3.7,6.2,"Apartment",3,1,1,"Vienna","Vienna","1-15% offer",0,0,1,1
+12,134,"3","4",1,22347,6.9,9.6,"Apartment",4,1,1,"Vienna","Vienna","15-50% offer",0,0,1,1
+26,77,"3","3.5",21,22348,3.7,5,"Hotel",4,0,1,"Vienna","Vienna","0% no offer",0,0,0,0
+28,102,"3","4.5",204,22349,5.3,7.6,"Hotel",4,0,0,"Vienna","Vienna","0% no offer",0,0,0,0
+30,56,"3.5","3.5",88,22350,2.5,5.2,"Apartment",3.2,1,1,"Vienna","Vienna","1-15% offer",0,0,0,0
+1,185,"3","4",1,22351,2.7,5.4,"Apartment",3,1,1,"Vienna","Vienna","15-50% offer",0,0,1,1
+12,130,"3","4",20,22353,6.6,9.4,"Hotel",4.4,0,1,"Vienna","Vienna","0% no offer",0,0,0,0
+171,78,"3","4",811,22354,3.2,4.5,"Hotel",4.3,0,0,"Vienna","Vienna","0% no offer",0,0,0,0
+34,76,"3","4",61,22355,3.3,4.6,"Hotel",3.7,1,1,"Vienna","Vienna","1-15% offer",0,0,0,0
+69,68,"4","3.5",87,22356,4.5,5.2,"Hotel",4,1,1,"Vienna","Vienna","1-15% offer",0,0,0,0
+84,116,"4","4",493,22358,2.7,3.7,"Hotel",4,1,0,"Vienna","Vienna","15-50% offer",0,0,0,0
+212,172,"4","4",401,22359,2.2,3.8,"Hotel",4.1,1,1,"Vienna","Vienna","1-15% offer",0,0,0,0
+15,80,"2","3.5",187,22361,5.2,7.6,"Hostel",3.2,0,1,"Vienna","Vienna","0% no offer",0,0,0,0
+12,87,"3","4",30,22362,2.4,3.9,"Hotel",4,0,1,"Vienna","Vienna","0% no offer",0,0,0,0
+89,90,"3","3",78,22363,4.6,7.4,"Hotel",3,1,1,"Vienna","Vienna","1-15% offer",0,0,0,0
+74,100,"3.5","4",282,22364,2.7,4.2,"Hotel",4.4,1,1,"Vienna","Vienna","15-50% offer",0,0,0,0
+3,173,"2","4",1,22365,3.1,4.6,"Apartment",3.2,1,1,"Vienna","Vienna","15-50% offer",0,0,1,1
+44,92,"2","3.5",35,22366,2.5,4.1,"Pension",3.2,0,1,"Vienna","Vienna","0% no offer",0,0,0,0
+6,133,"2","4",1,22369,2.6,5.3,"Apartment",3.7,1,1,"Vienna","Vienna","15-50% offer",0,0,1,1
+3,134,"3.5","4",1,22370,5.1,7.7,"Apartment",3.2,1,1,"Vienna","Vienna","50%-75% offer",0,0,1,1
+2,209,"3","4",1,22371,5.2,7.8,"Apartment",4,1,1,"Vienna","Vienna","15-50% offer",0,0,1,1
+44,66,"3","4",1,22372,1.6,1.8,"Apartment",4.4,1,1,"Vienna","Vienna","75%+ offer ",0,0,1,1
+35,114,"4","5",12,22373,1.4,2.2,"Apartment",4.9,1,1,"Vienna","Vienna","50%-75% offer",0,0,0,0
+38,89,"4","3",73,22377,7,9.7,"Hotel",3.5,0,0,"Voesendorf","Voesendorf","0% no offer",0,0,0,0
+115,92,"4","3.5",545,22378,7.1,9.9,"Hotel",3.7,0,0,"Voesendorf","Voesendorf","0% no offer",0,0,0,0
+186,84,"3","4.5",982,22380,1.9,2.7,"Hotel",4.4,1,0,"Vienna","Wahring","15-50% offer",0,0,0,0
+27,124,"2","2.5",26,22381,1.8,3.2,"Apartment",3.5,1,1,"Vienna","Wahring","15-50% offer",0,0,0,0
+45,185,"4","4",142,22382,2.1,3,"Hotel",4.4,0,1,"Vienna","Wahring","0% no offer",0,0,0,0
+168,85,"4","3.5",553,22384,3,3.2,"Hotel",4,1,0,"Vienna","Wahring","1-15% offer",0,0,0,0
+1,133,"2","4",1,22385,1.9,3.1,"Apartment",4,1,1,"Vienna","Wahring","15-50% offer",0,0,1,1
+77,110,"3.5","4.5",116,22386,1.6,4,"Hotel",4.5,0,0,"Vienna","Wieden","0% no offer",0,0,0,0
+72,86,"3","4",89,22387,1.6,4,"Hotel",4.3,0,0,"Vienna","Wieden","0% no offer",0,0,0,0
+158,118,"4","4",436,22388,1,3.6,"Hotel",4.1,0,0,"Vienna","Wieden","0% no offer",0,0,0,0
+15,126,"3.5","4",1,22389,0.9,3.6,"Hotel",4.5,1,1,"Vienna","Wieden","1-15% offer",0,0,1,1
+291,92,"3","4",688,22390,1.3,3.9,"Hotel",4.3,1,0,"Vienna","Wieden","15-50% offer",0,0,0,0
+317,197,"4","4.5",1840,22391,0.8,3.5,"Hotel",4.8,1,1,"Vienna","Wieden","15-50% offer",0,0,0,0
+193,39,"2.5","3.5",69,22393,1.3,4,"Guest House",3.5,0,1,"Vienna","Wieden","0% no offer",0,0,0,0
+280,135,"4","4",1121,22394,1.2,3.9,"Hotel",4.5,0,0,"Vienna","Wieden","0% no offer",0,0,0,0
+47,125,"4","4.5",229,22395,1.2,3.7,"Hotel",4.4,1,0,"Vienna","Wieden","15-50% offer",0,0,0,0
+7,67,"2","4.5",1583,22396,1,3.8,"Hostel",3.4,0,0,"Vienna","Wieden","0% no offer",0,0,0,0
+125,134,"4","4.5",615,22397,0.8,3.5,"Hotel",4.5,1,0,"Vienna","Wieden","1-15% offer",0,0,0,0
+34,91,"3","3.5",383,22398,0.9,3.7,"Hotel",3.5,1,1,"Vienna","Wieden","15-50% offer",0,0,0,0
+112,110,"3","4",263,22399,0.8,3.6,"Hotel",3.9,0,0,"Vienna","Wieden","0% no offer",0,0,0,0
+1,84,"3.5","4",1,22400,0.9,3.6,"Apartment",5,0,1,"Vienna","Wieden","0% no offer",0,0,1,1
+77,100,"3","4",149,22401,1.2,3.7,"Hotel",4,1,1,"Vienna","Wieden","1-15% offer",0,0,0,0
+572,95,"4","4",1003,22402,1.5,3.9,"Hotel",4.1,1,1,"Vienna","Wieden","1-15% offer",0,0,0,0
+53,73,"3","3",293,22403,1.5,4,"Hotel",3.4,1,1,"Vienna","Wieden","1-15% offer",0,0,0,0
+2,109,"3","3",14,22404,1.5,3.8,"Apartment",5,1,1,"Vienna","Wieden","50%-75% offer",0,0,0,0
+145,185,"5","4",740,22406,0.8,3.6,"Hotel",4.3,1,0,"Vienna","Wieden","15-50% offer",0,0,0,0
+112,100,"4","4.5",1006,22407,1,3.7,"Hotel",4.4,0,1,"Vienna","Wieden","0% no offer",0,0,0,0
+169,58,"3","3",135,22408,1.4,4.1,"Hotel",3.2,1,0,"Vienna","Wieden","15-50% offer",0,0,0,0
+80,110,"3.5","4",1,22409,0.7,3.5,"Apartment",4,1,1,"Vienna","Wieden","1-15% offer",0,0,1,1
