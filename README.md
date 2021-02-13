@@ -12,4 +12,4 @@ Data Analysis 1-2
 Data Analysis 3
 - Task 4 airbnb is a price prediction model building project
 - Task 5 firm success is a probability prediction model building project predicting fast growth firms
- Task 6 best hotel prices is a price prediction model building project 
+- Task 6 best hotel prices is a price prediction model building project 
