@@ -54,61 +54,67 @@ to_filter[to_filter > 0]
 
 # Price is skewed with a long right tail
 # Logarithmic transformation is preferable
-ggplot(data = vienna, aes (x = price)) +
+plot_price <- ggplot(data = vienna, aes (x = price)) +
   geom_histogram(binwidth = 10, color = "black", fill = "seagreen4")+
-  labs(x = "Price (US dollars)", y = "Frequency") +
+  labs(title="Distribution of price", x = "Price (US dollars)", y = "Frequency") +
   theme_bw() 
+plot_price
 
 vienna$lnprice <- log(vienna$price)
 
 # lnprice -> closer to a normal distribution
-ggplot(data = vienna, aes (x = lnprice)) +
+plot_lnprice <- ggplot(data = vienna, aes (x = lnprice)) +
   geom_histogram(color = "black", fill = "seagreen4")+
-  labs(x = "Price (US dollars)", y = "Frequency") +
+  labs(title="Distribution of log price", x = "Price (US dollars)", y = "Frequency") +
   theme_bw() 
+plot_lnprice
 
 # Distance is better with a logarithmic transformation
-ggplot(data = vienna, aes (x = n_distance)) +
+plot_distance <- ggplot(data = vienna, aes (x = n_distance)) +
   geom_histogram(binwidth = 0.3, color = "black", fill = "seagreen4")+
-  labs(x = "Distance to city center (miles)", y = "Frequency") +
+  labs(title="Distribution of distance", x = "Distance to city center (miles)", y = "Frequency") +
   expand_limits(x = 0.01, y = 0.01) +
   # scale_x_continuous(expand = c(0.01,0.01), limits = c(0,14), breaks = seq(0, 14, by = 2)) +
   # scale_y_continuous(expand = c(0.00,0.00), limits = c(0,61), breaks = seq(0, 60, by = 10)) +
   theme_bw() 
+plot_distance
 
 vienna$n_distance_log <- log(vienna$n_distance)
 
-ggplot(data = vienna, aes (x = n_distance_log)) +
+plot_lndistance <- ggplot(data = vienna, aes (x = n_distance_log)) +
   geom_histogram(binwidth = 0.3, color = "black", fill = "seagreen4")+
-  labs(x = "Distance to city center (miles)", y = "Frequency") +
+  labs(title="Distribution of log distance", x = "Distance to city center (miles)", y = "Frequency") +
   # expand_limits(x = 0.01, y = 0.01) +
   # scale_x_continuous(expand = c(0.01,0.01), limits = c(0,14), breaks = seq(0, 14, by = 2)) +
   # scale_y_continuous(expand = c(0.00,0.00), limits = c(0,61), breaks = seq(0, 60, by = 10)) +
   theme_bw() 
+plot_lndistance
 
 
 # How does average price changes across variables
 # number of stars
-ggplot(data = vienna, aes(x = f_stars, y = price)) +
+boxplot_stars <- ggplot(data = vienna, aes(x = f_stars, y = price)) +
   stat_boxplot(aes(group = f_stars), geom = "errorbar", width = 0.3,
                color = "black", size = 0.5, na.rm=T)+
   geom_boxplot(aes(group = f_stars),
                color = "black", fill = c("seagreen2","seagreen3","seagreen4"),
                size = 0.5, width = 0.6, na.rm=T, outlier.shape = NA) +
   scale_y_continuous(expand = c(0.01,0.01),limits = c(0,300), breaks = seq(0,300,100)) +
-  labs(title="Distribution of price by room type",x = "Room type",y = "Price (US dollars)")+
+  labs(title="Distribution of price by stars",x = "Number of stars",y = "Price (US dollars)")+
   theme_bw()
+boxplot_stars
 
-# number of stars
-ggplot(data = vienna, aes(x = f_ratingta, y = price)) +
+# tripadvisor rating
+boxplot_ratingta <- ggplot(data = vienna, aes(x = f_ratingta, y = price)) +
   stat_boxplot(aes(group = f_ratingta), geom = "errorbar", width = 0.3,
                color = "black", size = 0.5, na.rm=T)+
   geom_boxplot(aes(group = f_ratingta),
-               color = "black", fill = c("seagreen2", "seagreen2", "seagreen3","seagreen3","seagreen4","seagreen3"),
+               color = "black", fill = c("seagreen2", "seagreen2", "seagreen3","seagreen3","seagreen4"),
                size = 0.5, width = 0.6, na.rm=T, outlier.shape = NA) +
   scale_y_continuous(expand = c(0.01,0.01),limits = c(0,300), breaks = seq(0,300,100)) +
-  labs(title="Distribution of price by room type",x = "Room type",y = "Price (US dollars)")+
+  labs(title="Distribution of price by Tripadvisor rating",x = "Rating",y = "Price (US dollars)")+
   theme_bw()
+boxplot_ratingta
 
 vienna %>%
   group_by(d_scarce_room) %>%
@@ -273,28 +279,17 @@ vienna <- vienna %>%
   mutate(predicted_price_ln = predict(rf_model, newdata = vienna))
 
 vienna <- vienna %>%
-  mutate(res = round(predicted_price_ln - lnprice,4))
+  mutate(ln_res = lnprice - predicted_price_ln)
 
-std <- sd(vienna$res)
+std <- sd(vienna$ln_res)
 
 vienna <- vienna %>%
   mutate(predicted_price = round(exp(vienna$predicted_price_ln) * exp((std^2)/2),2))
 
 # Actual versus predicted price
-log_vs_pred <- ggplot(data = vienna) +
-  geom_point(aes(y=predicted_price_ln, x=lnprice), color = "seagreen4", size = 1,
-             shape = 16, show.legend=FALSE, na.rm=TRUE) +
-  geom_segment(aes(x = 3.7, y = 3.7, xend = 5.7, yend =5.7), size=0.5, color="black", linetype=2) +
-  coord_cartesian(xlim = c(3.7, 5.7), ylim = c(3.7, 5.7)) +
-  scale_x_continuous(expand = c(0.01,0.01),limits=c(3.7, 5.7)) +
-  scale_y_continuous(expand = c(0.01,0.01),limits=c(3.7, 5.7)) +
-  labs(y = "Log Price (US dollars)", x = "Predicted Log Price  (US dollars)") +
-  theme_bw() 
-log_vs_pred
-
 
 level_vs_pred <- ggplot(data = vienna) +
-  geom_point(aes(y=predicted_price, x=price), color = "seagreen4", size = 1,
+  geom_point(aes(y=price, x=predicted_price), color = "seagreen4", size = 1,
              shape = 16, show.legend=FALSE, na.rm=TRUE) +
   geom_segment(aes(x = 0, y = 0, xend = 250, yend =250), size=0.5, color="black", linetype=2) +
   coord_cartesian(xlim = c(0, 250), ylim = c(0, 250)) +
@@ -304,14 +299,18 @@ level_vs_pred <- ggplot(data = vienna) +
   theme_bw() 
 level_vs_pred
 
-# Best 5 hotels
-Best_hotels <- vienna %>% select(hotel_id, price, predicted_price, res, n_distance, f_stars, n_rating) %>%
-  arrange(res)
 
-Best5_hotels <- tail(Best_hotels,5)
+# Best 5 hotels
+vienna <- vienna %>%
+  mutate(price_res = round(price - predicted_price,4))
+
+Best_hotels <- vienna %>% select(hotel_id, price, predicted_price, price_res, ln_res, n_distance, f_neighbourhood, f_stars, n_rating) %>%
+  arrange(ln_res)
+
+Best5_hotels <- head(Best_hotels,5)
 
 # Best Deals
-# IDs: 21912, 21975, 22344, 22118, 22184
+# IDs: 21912, 21975, 22104, 22032, 22407
 Best5_hotels
 
 
@@ -319,3 +318,24 @@ Best5_hotels
 # IDs: 21912, 21975, 22344, 22080, 22184
 Best5_hotels_book <- Best_hotels[Best_hotels$hotel_id %in% c(21912, 21975, 22344, 22080, 22184),]
 Best5_hotels_book
+
+
+vienna$bestdeals <- ifelse(vienna$ln_res %in% head(sort(vienna$ln_res),5),TRUE,FALSE)
+
+bestdeals <- ggplot(data = vienna, aes(x = predicted_price, y = price)) +
+  geom_point(aes(color=bestdeals,shape=bestdeals), size = 1.2, fill="black", alpha = 0.8, show.legend=F, na.rm = TRUE) + 
+  geom_segment(aes(x = 0, y = 0, xend = 250, yend =250), size=0.8, color="seagreen4", linetype=2) +
+  labs(x = "Predicted price in US dollars ",y = "Price in US dollars")+
+  coord_cartesian(xlim = c(0, 250), ylim = c(0, 250)) +
+  scale_colour_manual(name='',values=c("grey",'red')) +
+  scale_shape_manual(name='',values=c(16,21)) +
+  geom_segment(aes(x = 110, y = 55, xend = 140, yend = 110), arrow = arrow(length = unit(0.1, "cm")))+
+  geom_segment(aes(x = 100, y = 55, xend = 95, yend = 70), arrow = arrow(length = unit(0.1, "cm")))+
+  geom_segment(aes(x = 90, y = 50, xend = 70, yend = 50), arrow = arrow(length = unit(0.1, "cm")))+
+  annotate("text", x = 110, y = 50, label = "Best deals", size=2.5)+
+  theme_bw() +
+  theme(axis.text.x=element_text(size=10)) +
+  theme(axis.text.y=element_text(size=10)) +
+  theme(axis.title.x=element_text(size=10)) +
+  theme(axis.title.y=element_text(size=10)) 
+bestdeals
